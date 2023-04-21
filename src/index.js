@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <header>
-        <h1>Título de la página</h1>
+        <h1>BUDGIFY</h1>
       </header>
       <main>
         <p>Contenido de la página</p>
