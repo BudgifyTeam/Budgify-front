@@ -1,6 +1,6 @@
 # Budgify - Front
 
-*cloned - DARCK*
+front → https://budgify-ed7a9.web.app/
 
 # Getting Started with Create React App
 
