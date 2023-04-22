@@ -1,0 +1,115 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700,700italic,900,900italic&subset=latin,latin-ext,cyrillic,cyrillic-ext,greek-ext,greek,vietnamese);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext,cyrillic-ext,cyrillic,greek-ext,greek,vietnamese);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,latin-ext,greek-ext,greek,vietnamese,cyrillic,cyrillic-ext);
+body {
+  background: linear-gradient(#646bc3, #c15fef, black);
+  background-size: cover;
+}
+.container {
+  height: 100vh;
+  margin-left: -5%;
+  margin-right: -5%;
+  overflow: hidden;
+}
+header {
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  text-align: right;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#logo {
+  border-radius: 10%;
+  width: 20%;
+  margin-left: 3%;
+  margin-right: 5%;
+}
+#budgifyTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  color: #fff;
+}
+
+#expandButton {
+  border-radius: 10%;
+  width: 20%;
+  margin-left: 3%;
+  margin-right: 5%;
+}
+
+#homeImage {
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+}
+
+#headerText {
+  margin-left: 6%;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 4px;
+  font-size: 25px;
+  font-weight: 50;
+  color: #fff;
+}
+
+#bodyText {
+  margin-left: 6%;
+  font-family: "Roboto", sans-serif;
+  margin-top: 4px;
+  font-size: 20px;
+  font-weight: 50;
+  color: #fff;
+}
+
+footer {
+    margin-top: 20px;
+  padding-left: -5%;
+  padding-top: 130px;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/footer.png?alt=media&token=cac789ec-2686-4224-b8c8-f16aca47c247");
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+}
+
+#footerButtons {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto; /* centra el div */
+  width: 80%;
+}
+
+#footerButton {
+  font-family: "Roboto", sans-serif;
+  font-weight: 120;
+  background-color: black;
+  color: #fff;
+  padding: 10px 20px;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin: 10px 0;
+  width: 40%;
+}
+
+#footerDescription {
+  padding-left: 10%;
+  padding-right: 10%;
+  display: flex;
+  font-family: "Roboto", sans-serif;
+  font-weight: 120;
+  color: #fff;
+}
