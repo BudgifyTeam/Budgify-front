@@ -13,7 +13,7 @@ function App() {
           <h1 id="budgifyTitle">| BUDGIFY</h1>
         </div>
         <div className="header-right">
-          <a href="">
+          <a href="/">
             <img id="expandButton" src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/expandButton.png?alt=media&token=acb8fb23-d2a6-44d3-ac58-dd221c47d31c" alt="" />
           </a>
         </div>
