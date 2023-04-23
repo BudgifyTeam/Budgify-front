@@ -9,6 +9,7 @@ body {
   height: 100vh;
   margin-left: -5%;
   margin-right: -5%;
+  padding-bottom: -10px;
   overflow: hidden;
   flex-direction: column;
 }
