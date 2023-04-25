@@ -16,7 +16,7 @@ function Login(){
 
     const handleSubmit = () => {
         const setUsernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
-        setUsername(!setUsernamePattern.test(username) ? "noHidden" : "hidden");
+        setPasswordAlert(!setUsernamePattern.test(username) ? "noHidden" : "hidden");
         const passwordPattern =/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
         setPasswordAlert(!passwordPattern.test(password) ? "noHidden" : "hidden");
         
