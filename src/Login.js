@@ -3,32 +3,25 @@ import {UserForm, CheckTerm, Header, UserFormLogin} from "./components/FormsComp
 
 
 function Login(){
-    const [login, setLogin]= useState("hidden");
-    const [username, setUsername]= useState("hidden")
-
-    const handleloginChange = (event) => {
-        setLogin(event.target.value);
-    };
+    const [username, setUsername]= useState("");
+    const [password, setPassword]= useState("");
+    const [passwordAlert, setPasswordAlert]= useState("hidden");
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     };
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
 
     const handleSubmit = () => {
-        const setLoginPattern = /^[a-zA-Z0-9_]{6,15}$/;
-        setLogin(!setLoginPattern.test(login) ? "noHidden" : "hidden");
         const setUsernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
-        setUsername(!setUsernamePattern.test(login) ? "noHidden" : "hidden");
+        setUsername(!setUsernamePattern.test(username) ? "noHidden" : "hidden");
+        const passwordPattern =/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+        setPasswordAlert(!passwordPattern.test(password) ? "noHidden" : "hidden");
         
         let valid = true;
-
-        if (
-            login === "noHidden" ||
-            username === "noHidden"
-        ) {
-            valid = false;
-            console.log("No request");
-        }
+        valid = passwordAlert === "hidden"?true:false;
 
         if (valid) {
             console.log("request");
@@ -39,17 +32,18 @@ function Login(){
         <div>
             <Header/>
             <h1 id="LoginTitle">To continue, log in to Budgify</h1>
-            <UserFormLogin
+            <UserForm
                 header={"Username"}
-                onChange={handleUsernameChange}/>
+                onChange={handleUsernameChange}
+                alertStatus={"hidden"}/>
             <UserForm
                 header={"Password"}
                 type={"password"}
-                onChange={handleloginChange}
+                onChange={handlePasswordChange}
                 alert={
                     "The username or password is wrong"
                   }
-                alertStatus={login}
+                alertStatus={passwordAlert}
                 />
                 
 
@@ -60,7 +54,7 @@ function Login(){
             <button id="roundButton" onClick={handleSubmit} >
                 LOG IN
             </button>
-            <p id="haveCount">Don’t have an account?</p>
+            <p id="haveCount">Don't have an account?</p>
             <button id="loginToRegisterButton" >
                 Sign up in budgify
             </button>
