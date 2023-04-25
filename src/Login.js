@@ -17,7 +17,6 @@ function Login(){
     const handleSubmit = () => {
         let validUsername = true;
         const setUsernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
-        console.log(username);
         validUsername = !setUsernamePattern.test(username) ? false : true;
 
         let validPassword = true;
