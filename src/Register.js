@@ -93,7 +93,7 @@ function Register() {
           alertStatus={mailConfirmAlert}
         />
         <UserForm
-          headerLogin={"Create a password"}
+          header={"Create a password"}
           type={"password"}
           onChange={handlePasswordChange}
           alert={
