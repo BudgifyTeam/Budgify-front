@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {UserForm, CheckTerm, Header, UserFormLogin} from "./components/FormsComponents";
+import {UserForm, CheckTerm, Header} from "./components/FormsComponents";
 
 
 function Login(){
@@ -15,17 +15,21 @@ function Login(){
     };
 
     const handleSubmit = () => {
+        let validUsername = true;
         const setUsernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
-        setPasswordAlert(!setUsernamePattern.test(username) ? "noHidden" : "hidden");
-        const passwordPattern =/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-        setPasswordAlert(!passwordPattern.test(password) ? "noHidden" : "hidden");
-        
-        let valid = true;
-        valid = passwordAlert === "hidden"?true:false;
+        console.log(username);
+        validUsername = !setUsernamePattern.test(username) ? false : true;
 
-        if (valid) {
-            console.log("request");
-      //Make request
+        let validPassword = true;
+        const passwordPattern =/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+        validPassword = !passwordPattern.test(password) ? false : true;
+        
+
+        if (validUsername && validPassword) {
+            setPasswordAlert("hidden")
+            //Make request
+        }else{
+            setPasswordAlert("noHidden")
         }
     };
     return(

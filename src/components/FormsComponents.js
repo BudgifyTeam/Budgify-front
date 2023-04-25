@@ -37,14 +37,6 @@ export function UserForm(props) {
     );
 }
 
-export function UserFormLogin(props) {
-  return (
-    <>
-      <h1 id="formHeader">{props.header}</h1>
-      <input type={props.type} id="formInput" onChange={props.onChange} />
-    </>
-  );
-}
 
 
   
