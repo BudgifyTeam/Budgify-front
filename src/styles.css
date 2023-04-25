@@ -211,6 +211,53 @@ footer {
   font-size: 17px;
 }
 
+#LoginTitle{
+  margin: 30px;
+  text-align: center;
+  font-family: "Roboto", Thin;
+  font-weight: 308;
+  font-size: 25px;
+}
+
+#headerLogin {
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  font-family: "Roboto", Thin;
+  align-items: center;
+  height: 60px;
+}
+
+#forgotYourPassword{
+  margin: 30px;
+  text-decoration: underline rgb(185, 183, 183);
+  font-family: "Roboto", Thin;
+  font-weight: 30;
+  font-size: 18px;
+}
+
+#haveCount{
+  margin: 10px;
+  text-align: center;
+  font-family: "Roboto", ligth;
+  font-weight: 308;
+  font-size: 25px;
+}
+
+#loginToRegisterButton{
+  border-width: 5;
+  margin: 0;
+  margin: 5%;
+  padding: 12px;
+  width: 90%;
+  border-radius: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: #000;
+  background: linear-gradient(to right, #f9f9f9, #f9f9f9);
+}
+
 .alert{
   width: 90%;
   margin-left: 5%;
