@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom/client";
+import Login from "./Login"
 import Register from "./Register"
 import App from "./Home"
 import { BrowserRouter as Router, Routes ,Route } from 'react-router-dom';
@@ -12,6 +13,7 @@ root.render(
       <Routes>
         <Route exact path="/" element={<App/>}/>
         <Route exact path="/register" element={<Register/>}/>
+        <Route exact path="/login" element={<Login/>}/>
       </Routes>
     </Router>
   </>
