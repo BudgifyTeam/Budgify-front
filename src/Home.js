@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 function App() {
     return (
@@ -36,7 +37,9 @@ function App() {
   
           <footer>
             <div id="footerButtons">
-              <button id="footerButton">Try Budgify</button>
+              <Link to ="/Login">
+                <button id="footerButton">Try Budgify</button>
+                </Link>
               <button id="footerButton">About Us</button>
             </div>
             <p id="footerDescription">

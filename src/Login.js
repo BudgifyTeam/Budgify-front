@@ -3,7 +3,7 @@ import {UserForm, CheckTerm, Header} from "./components/FormsComponents";
 import { GetToken } from "./utils/stringUtils";
 import { LoginRequest } from "./conection/ConnectionLogin"
 import { Link } from "react-router-dom";
-import Register from "./Register";
+
 
 
 function Login(){
@@ -22,7 +22,7 @@ function Login(){
         let validUsername = true;
         //const setUsernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
         //validUsername = !setUsernamePattern.test(username) ? false : true;
-
+        
         let validPassword = true;
         //const passwordPattern =/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
         //validPassword = !passwordPattern.test(password) ? false : true;

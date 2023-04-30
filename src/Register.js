@@ -74,9 +74,9 @@ function Register() {
     }else{
       //imprimir mensaje el data.message en una alerta
       console.log(data.code + " imprimiendo el mensaje de error");
-      if(data.message == 'username already exists'){
+      if(data.message === 'username already exists'){
         console.log("nombre usuario ya esta en uso")
-      }else if(data.message == 'Email already exists'){
+      }else if(data.message === 'Email already exists'){
         console.log("nombre usuario ya esta en uso")
       }else{
         console.log('En este momento no se puede acceder al servicio')
