@@ -1,3 +1,4 @@
+import { useState } from "react";
 import base64 from "react-native-base64"; 
 //command to install base64 "npm install --save react-native-base64"
 

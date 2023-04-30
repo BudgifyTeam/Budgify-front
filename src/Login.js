@@ -33,9 +33,16 @@ function Login(){
             setPasswordAlert("noHidden")
         }
     };
-    function handleLogin() {
+    async function handleLogin() {
         let token = GetToken(username, password);
-        LoginRequest(username, token);
+        const data = await LoginRequest(username, token);
+        if (data.code) {
+            //llevar al usuario a la pagina principal _login exitoso_
+            console.log(data.code + " llevando al usuario a su sesión");
+        }else {
+            //imprimir mensaje el data.message en una alerta
+            console.log(data.code + " imprimiendo el mensaje de error");
+        }
     }
     return(
         <div>

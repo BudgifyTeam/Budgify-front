@@ -74,7 +74,6 @@ function Register() {
       console.log(JSON.stringify(result))
       petitionPost((result))
       console.log(data)
-      
     }
   };
 

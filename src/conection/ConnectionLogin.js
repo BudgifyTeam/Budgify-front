@@ -7,17 +7,19 @@ export async function LoginRequest(username, token){
         username:username,
         token:token
    })
-    fetch(uri, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-      })
-      .then(response => {
-        console.warn(response);
-      })
-      .catch(error => {
-        console.warn(error);
-      });
+    try {
+        const res = await fetch(uri, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+          });
+        const data = await res.json();
+        console.warn(data.message);
+        return data;
+    } catch (error) {
+        console.warn(error.message);
+        throw error;
+    }
 }
