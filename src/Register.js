@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import {UserForm, CheckTerm, Header} from "./components/FormsComponents";
-import { ConnectRegisterBackend, RegisterRequest } from "./conection/ConectionRegister";
-import axios from "axios";
+import { RegisterRequest } from "./conection/ConectionRegister";
 import { GetToken } from "./utils/stringUtils";
 
 function Register() {
-  const url=("https://localhost:44329/api/Users/Register")
   const [username, setUsername] = useState("");
   const [usernameAlert, setUsernameAlert] = useState("hidden");
   const [mailAlert, setMailAlert] = useState("hidden");
@@ -16,7 +14,6 @@ function Register() {
   const [mailConfirm, setmailConfirm] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [data, setData] = useState()
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -34,13 +31,6 @@ function Register() {
     setPasswordConfirm(event.target.value);
   };
 
-  const petitionPost=async(user)=>{
-    await axios.post(url,user).then(Response=>{
-      setData(data.concat(Response.data));
-  }).catch(error=>{
-      console.log(error)
-  })
-  };
 
   const handleSubmit = () => {
     const usernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
