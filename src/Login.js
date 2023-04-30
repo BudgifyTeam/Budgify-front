@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {UserForm, CheckTerm, Header} from "./components/FormsComponents";
 import { GetToken } from "./utils/stringUtils";
 import { LoginRequest } from "./conection/ConnectionLogin"
+import { Link } from "react-router-dom";
+import Register from "./Register";
 
 
 function Login(){
@@ -71,9 +73,12 @@ function Login(){
                 LOG IN
             </button>
             <p id="haveCount">Don't have an account?</p>
-            <button id="loginToRegisterButton" >
-                Sign up in budgify
-            </button>
+            <Link to ="/Register">
+                <button  id="loginToRegisterButton">
+                    Sign up in budgify
+                </button>
+            </Link>
+            
         </div>
         
     );

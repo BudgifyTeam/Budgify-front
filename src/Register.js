@@ -152,7 +152,7 @@ function Register() {
         <br />
         <p id="lastLogin">
           Already have an account?{" "}
-          <span style={{ color: "#BC00FF" }}>Log in.</span>
+          <span  style={{ color: "#BC00FF" }}><a href="/login">Log in.</a></span>
         </p>
       </div>
     </div>
