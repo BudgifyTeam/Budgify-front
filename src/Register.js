@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import {UserForm, CheckTerm, Header} from "./components/FormsComponents";
-import { ConnectRegisterBackend } from "./conection/ConectionRegister";
+import { ConnectRegisterBackend, RegisterRequest } from "./conection/ConectionRegister";
 import axios from "axios";
+import { GetToken } from "./utils/stringUtils";
 
 function Register() {
   const url=("https://localhost:44329/api/Users/Register")
@@ -70,12 +71,28 @@ function Register() {
 
     if (valid) {
       console.log("request");
-      const result = ConnectRegisterBackend(username,password,mail);
-      console.log(JSON.stringify(result))
-      petitionPost((result))
-      console.log(data)
+      handleRegister()
     }
   };
+
+  async function handleRegister(){
+    let token = GetToken(username,password);
+    const data = await RegisterRequest(username,token,mail);
+    if(data.code){
+      //llevar al usuario a la pagina de login exitoso
+      console.log(data.code + " llevando al usuario a su sesión");
+    }else{
+      //imprimir mensaje el data.message en una alerta
+      console.log(data.code + " imprimiendo el mensaje de error");
+      if(data.message == 'username already exists'){
+        console.log("nombre usuario ya esta en uso")
+      }else if(data.message == 'Email already exists'){
+        console.log("nombre usuario ya esta en uso")
+      }else{
+        console.log('En este momento no se puede acceder al servicio')
+      }
+    }
+  }
 
   return (
     <div>
