@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import {UserForm, CheckTerm, Header} from "./components/FormsComponents";
 import { RegisterRequest } from "./conection/ConectionRegister";
 import { GetToken } from "./utils/stringUtils";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [usernameAlert, setUsernameAlert] = useState("hidden");
   const [mailAlert, setMailAlert] = useState("hidden");
@@ -71,6 +73,7 @@ function Register() {
     if(data.code){
       //llevar al usuario a la pagina de login exitoso
       console.log(data.code + " llevando al usuario a su sesión");
+      navigate("/login");
     }else{
       //imprimir mensaje el data.message en una alerta
       console.log(data.code + " imprimiendo el mensaje de error");
