@@ -25,6 +25,7 @@ function Login(){
     };
 
     const handleSubmit = () => {
+
         let validUsername = true;
         const setUsernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
         validUsername = !setUsernamePattern.test(username) ? false : true;
@@ -32,7 +33,6 @@ function Login(){
         let validPassword = true;
         const passwordPattern =/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
         validPassword = !passwordPattern.test(password) ? false : true;
-        
 
         if (validUsername && validPassword) {
             setPasswordAlert("hidden")
@@ -41,6 +41,24 @@ function Login(){
             setPasswordAlert("noHidden")
         }
     };
+
+    function verifyLogin(){
+        var message_error = ""
+        if(password === "" && username === ""){
+            message_error = "Usename and password are empty"
+        }else if(username === ""){
+            message_error = "Username is empty "
+        }else if(password === ""){
+            message_error = "Password is empty"
+        }else if(username.length <= 6){
+            message_error = "Username must have at least 6 characters"
+        }else if(password.length <= 8){
+            message_error = "password must have at least 8 characters"
+        }else{
+            message_error = "username or password are not valid"
+        }
+        return message_error
+    }
 
     async function handleLogin() {
         let token = GetToken(username, password);
@@ -73,12 +91,11 @@ function Login(){
                 type={"password"}
                 onChange={handlePasswordChange}
                 alert={
-                    "The username or password is wrong"
+                    verifyLogin()
                   }
                 alertStatus={passwordAlert}
                 />
                 
-
             <p id="forgotYourPassword">Forgot your password?</p>
             <CheckTerm terms="Remember me" checked={rememberMe} onChange={handleRemember} />
             <button id="roundButton" onClick={handleSubmit} >
