@@ -25,7 +25,6 @@ function App() {
         </div>
       </div>
       <hr />
-
       <div id="homeBody">
         <h2 id="headerText">Welcome to Budgify</h2>
         <h2 id="bodyText">Your personal finances in one place.</h2>
@@ -35,24 +34,22 @@ function App() {
           id="homeImage"
         />
       </div>
-      <div className="homeFooter"></div>
-      <div id="footerButtons">
-        <tr>
-          <td>
-            <Link to="/Login">
-              <button id="footerButton">Try Budgify</button>
-            </Link>
-          </td>
-          <td>
+      <div className="homeFooter">
+        <div id="footerButtons">
+          <Link to="/Login">
+            <button id="footerButton">Try Budgify</button>
+          </Link>
+          <Link>
             <button id="footerButton">About Us</button>
-          </td>
-        </tr>
+          </Link>
+        </div>
+        <p id="footerDescription">
+          Track your personal finances easily and efficiently, keep track of
+          your income and savings, plan your budget effectively and take control
+          of your personal finances to achieve the financial stability you so
+          desire.
+        </p>
       </div>
-      <p id="footerDescription">
-        Track your personal finances easily and efficiently, keep track of your
-        income and savings, plan your budget effectively and take control of
-        your personal finances to achieve the financial stability you so desire.
-      </p>
     </div>
   );
 }

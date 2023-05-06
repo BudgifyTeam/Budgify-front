@@ -2,13 +2,19 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext,cyrillic-ext,cyrillic,greek-ext,greek,vietnamese);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700&subset=latin,latin-ext,greek-ext,greek,vietnamese,cyrillic,cyrillic-ext);
 
+#root{
+  
+  margin: 0;
+  padding: 0;
+  
+  height: 100vh;
+}
 body{
   margin: 0;
   padding: 0;
 }
 
 .homeContainer {
-  height: 100%;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -16,9 +22,11 @@ body{
   background-size: cover;
   overflow: hidden;
   flex-direction: column;
+  
+  height: 65%;
 }
 #homeHeader{
-  margin-bottom: 60px;
+  margin-bottom: 4px;
   margin-top: 7px;
   position: relative;
   width: 100%;
@@ -28,7 +36,7 @@ body{
 }
 
 .header-left {
-  width: 60%;
+  width: 80%;
   padding-left: 10%;
   padding-top: 4%;
   display: flex;
@@ -36,7 +44,7 @@ body{
 }
 
 .header-right {
-  width: 100%;
+  width: 20%;
   padding-right: 10%;
   padding-top: 4%;
   text-align: right;
@@ -48,10 +56,11 @@ body{
 
 #logo {
   border-radius: 10%;
-  width: 40%;
+  width: 50px;
 }
 #budgifyTitle {
   margin: 5%;
+  margin-left: 3%;
   font-family: "Roboto", sans-serif;
   font-weight: 100;
   color: #fff;
@@ -59,17 +68,16 @@ body{
 
 #expandButton {
   border-radius: 10%;
-  width: 23%;
+  width: 40px;
 }
 
 #homeBody{
-  margin-left: 5%;
-  margin-right: 5%;
-
+  margin: 5%;
 }
 #homeImage {
   margin: 5%;
   width: 90%;
+  margin-bottom: 30px;
 }
 
 #headerText {
@@ -91,40 +99,46 @@ body{
 }
 
 .homeFooter {
-  flex-shrink: 0;
-  margin-top: 20px;
-  margin-bottom: 330px;
+  border-bottom: wheat 2px solid;
+  position: fixed;
+  padding-top: 20px;
+  bottom: 0;
+  background-color: #000;
+  flex-shrink: 2;
+  height: 35%;
   /*background-image: url("https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/footer.png?alt=media&token=cac789ec-2686-4224-b8c8-f16aca47c247");
   background-size: cover;
   background-position: center;*/
 }
 
 #footerButtons {
+  margin-top: 30px;
   display: flex;
   justify-content: center;
-  margin: 5%;
+  width: 100%;
 }
 
 #footerButton {
-  margin-left: 10%;
-  margin-right: 10%;
-  padding: 10px 20px;
+  padding: 12px;
   font-family: "Roboto", sans-serif;
   font-weight: 120;
   background-color: black;
   color: #fff;
   border: 1px solid white;
   border-radius: 30px;
-  width: 100%;
+  margin: 0 10px;
 }
 
 #footerDescription {
+  margin-top: 30px;
   padding-left: 10%;
   padding-right: 10%;
   display: flex;
   font-family: "Roboto", sans-serif;
   font-weight: 120;
   color: #fff;
+  text-align: justify;
+
 }
 
 .LoginAndRegisterHeader{
