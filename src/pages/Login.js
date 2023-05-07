@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import "./Login.css"
 import {UserForm,CheckTerm, Header} from "../components/FormsComponents";
 import { GetToken } from "../utils/stringUtils";
-import { LoginRequest } from "../conection/ConnectionLogin"
+import { LoginRequest } from "../api/LoginApi"
 import { Link, Navigate,  useNavigate } from "react-router-dom";
 
 

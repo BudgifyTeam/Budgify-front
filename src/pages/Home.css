@@ -1,0 +1,126 @@
+.homeContainer {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#646bc3, #c15fef, black);
+  background-size: cover;
+  overflow: hidden;
+  flex-direction: column;
+  
+  height: 65%;
+}
+#homeHeader{
+  margin-bottom: 4px;
+  margin-top: 7px;
+  position: relative;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.header-left {
+  width: 80%;
+  padding-left: 10%;
+  padding-top: 4%;
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  width: 20%;
+  padding-right: 10%;
+  padding-top: 4%;
+  text-align: right;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#logo {
+  border-radius: 10%;
+  width: 50px;
+}
+#budgifyTitle {
+  margin: 5%;
+  margin-left: 3%;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  color: #fff;
+}
+
+#expandButton {
+  border-radius: 10%;
+  width: 40px;
+}
+
+#homeBody{
+  margin: 5%;
+}
+#homeImage {
+  margin: 5%;
+  width: 90%;
+  margin-bottom: 30px;
+}
+
+#headerText {
+  margin-left: 6%;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 4px;
+  font-size: 25px;
+  font-weight: 50;
+  color: #fff;
+}
+
+#bodyText {
+  margin-left: 6%;
+  font-family: "Roboto", sans-serif;
+  margin-top: 4px;
+  font-size: 20px;
+  font-weight: 50;
+  color: #fff;
+}
+
+.homeFooter {
+  border-bottom: wheat 2px solid;
+  position: fixed;
+  padding-top: 20px;
+  bottom: 0;
+  background-color: #000;
+  flex-shrink: 2;
+  height: 35%;
+  /*background-image: url("https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/footer.png?alt=media&token=cac789ec-2686-4224-b8c8-f16aca47c247");
+  background-size: cover;
+  background-position: center;*/
+}
+
+#footerButtons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#footerButton {
+  padding: 12px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 120;
+  background-color: black;
+  color: #fff;
+  border: 1px solid white;
+  border-radius: 30px;
+  margin: 0 10px;
+}
+
+#footerDescription {
+  margin-top: 30px;
+  padding-left: 10%;
+  padding-right: 10%;
+  display: flex;
+  font-family: "Roboto", sans-serif;
+  font-weight: 120;
+  color: #fff;
+  text-align: justify;
+
+}
