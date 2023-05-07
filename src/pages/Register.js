@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import {UserForm, CheckTerm, Header} from "./components/FormsComponents";
-import { RegisterRequest } from "./conection/ConectionRegister";
-import { GetToken } from "./utils/stringUtils";
+import {UserForm, CheckTerm, Header} from "../components/FormsComponents";
+import { RegisterRequest } from "../conection/ConectionRegister";
+import { GetToken } from "../utils/stringUtils";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
