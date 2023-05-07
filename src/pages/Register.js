@@ -7,16 +7,22 @@ import { useNavigate } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
+  //Froms
   const [username, setUsername] = useState("");
+  const [mail, setMail] = useState("");
+  const [mailConfirm, setmailConfirm] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  //Alerts
   const [usernameAlert, setUsernameAlert] = useState("hidden");
   const [mailAlert, setMailAlert] = useState("hidden");
   const [mailConfirmAlert, setMailConfirmAlert] = useState("hidden");
   const [passwordAlert, setPasswordAlert] = useState("hidden");
   const [passwordConfirmAlert, setPasswordConfirmAlert] = useState("hidden");
-  const [mail, setMail] = useState("");
-  const [mailConfirm, setmailConfirm] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  //Checkbox
+  const [marketingMessagesAuth, setMarketingMessagesAuth] = useState(false);
+  const [dataShareAuth, setDataShareAuth] = useState(false);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -34,38 +40,37 @@ function Register() {
     setPasswordConfirm(event.target.value);
   };
 
-  const handleSubmit = () => {
+  async function handleSubmit() {
+    //regex and user verification
     const usernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
     setUsernameAlert(!usernamePattern.test(username) ? "noHidden" : "hidden");
-
+    //regex and mail verification
     const mailaddressPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setMailAlert(!mailaddressPattern.test(mail) ? "noHidden" : "hidden");
-    setMailConfirmAlert(mail !== mailConfirm ? "noHidden" : "hidden");
-
+    setMailConfirmAlert(
+      mail !== mailConfirm && mailConfirm !== "" ? "noHidden" : "hidden"
+    );
+    //regex and password verification
     const passwordPattern =
       /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
     setPasswordAlert(!passwordPattern.test(password) ? "noHidden" : "hidden");
     setPasswordConfirmAlert(
-      password !== passwordConfirm ? "noHidden" : "hidden"
+      password !== passwordConfirm && passwordConfirm !== ""
+        ? "noHidden"
+        : "hidden"
     );
-    let valid = true;
-
+    //This check validates if all field alerts are hidden and that all fields have content.
     if (
-      usernameAlert === "noHidden" ||
-      mailAlert === "noHidden" ||
-      mailConfirmAlert === "noHidden" ||
-      passwordAlert === "noHidden" ||
-      passwordConfirmAlert === "noHidden"
+      usernameAlert === "hidden" &&  mailAlert === "hidden" &&  mailConfirmAlert === "hidden" &&  passwordAlert === "hidden" &&
+      passwordConfirmAlert === "hidden" &&   username !== "" &&   password !== "" &&  passwordConfirm !== "" &&
+      mail !== "" &&  mailConfirm !== ""
     ) {
-      valid = false;
-      console.log("No request");
-    }
-
-    if (valid) {
       console.log("request");
       handleRegister();
+    }else{
+      console.log("no request");
     }
-  };
+  }
 
   async function handleRegister() {
     let token = GetToken(username, password);
