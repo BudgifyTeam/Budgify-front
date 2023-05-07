@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import {UserForm,CheckTerm, Header} from "./components/FormsComponents";
-import { GetToken } from "./utils/stringUtils";
-import { LoginRequest } from "./conection/ConnectionLogin"
+import {UserForm,CheckTerm, Header} from "../components/FormsComponents";
+import { GetToken } from "../utils/stringUtils";
+import { LoginRequest } from "../conection/ConnectionLogin"
 import { Link, Navigate,  useNavigate } from "react-router-dom";
 
 
@@ -48,6 +48,7 @@ function Login(){
         if (data.code) {
             if(rememberMe) {
                 localStorage.setItem("token", token);
+                console.log("Add Token");
             }
             console.log(data.code + " llevando al usuario a su sesión");
             navigate("/dashboard");

@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDom from "react-dom/client";
-import Login from "./Login"
-import Register from "./Register"
-import App from "./Home"
-import Dashboard from "./Dashboard";
+import Login from "./pages/Login"
+import Register from "./pages/Register"
+import App from "./pages/Home"
+import Dashboard from "./pages/Dashboard";
 import { BrowserRouter as Router, Routes ,Route } from 'react-router-dom';
 
 const root = ReactDom.createRoot(document.getElementById("root"));
