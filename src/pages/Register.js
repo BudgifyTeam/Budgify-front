@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Register.css";
-import {UserForm, CheckTerm, Header} from "../components/FormsComponents";
+import { UserForm, CheckTerm, Header } from "../components/FormsComponents";
 import { RegisterRequest } from "../api/RegisterApi";
 import { GetToken } from "../utils/stringUtils";
 import { useNavigate } from "react-router-dom";
@@ -34,7 +34,6 @@ function Register() {
     setPasswordConfirm(event.target.value);
   };
 
-
   const handleSubmit = () => {
     const usernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
     setUsernameAlert(!usernamePattern.test(username) ? "noHidden" : "hidden");
@@ -64,26 +63,26 @@ function Register() {
 
     if (valid) {
       console.log("request");
-      handleRegister()
+      handleRegister();
     }
   };
 
-  async function handleRegister(){
-    let token = GetToken(username,password);
-    const data = await RegisterRequest(username,token,mail);
-    if(data.code){
+  async function handleRegister() {
+    let token = GetToken(username, password);
+    const data = await RegisterRequest(username, token, mail);
+    if (data.code) {
       //llevar al usuario a la pagina de login exitoso
       console.log(data.code + " llevando al usuario a su sesión");
       navigate("/login");
-    }else{
+    } else {
       //imprimir mensaje el data.message en una alerta
       console.log(data.code + " imprimiendo el mensaje de error");
-      if(data.message === 'username already exists'){
-        console.log("nombre usuario ya esta en uso")
-      }else if(data.message === 'Email already exists'){
-        console.log("nombre usuario ya esta en uso")
-      }else{
-        console.log('En este momento no se puede acceder al servicio')
+      if (data.message === "username already exists") {
+        console.log("nombre usuario ya esta en uso");
+      } else if (data.message === "Email already exists") {
+        console.log("nombre usuario ya esta en uso");
+      } else {
+        console.log("En este momento no se puede acceder al servicio");
       }
     }
   }
@@ -156,7 +155,9 @@ function Register() {
         <br />
         <p id="lastLogin">
           Already have an account?{" "}
-          <span  style={{ color: "#BC00FF" }}><a href="/login">Log in.</a></span>
+          <span style={{ color: "#BC00FF" }}>
+            <a href="/login">Log in.</a>
+          </span>
         </p>
       </div>
     </div>

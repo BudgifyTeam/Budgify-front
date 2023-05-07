@@ -6,10 +6,10 @@
   background-size: cover;
   overflow: hidden;
   flex-direction: column;
-  
+
   height: 65%;
 }
-#homeHeader{
+#homeHeader {
   margin-bottom: 4px;
   margin-top: 7px;
   position: relative;
@@ -55,7 +55,7 @@
   width: 40px;
 }
 
-#homeBody{
+#homeBody {
   margin: 5%;
 }
 #homeImage {
@@ -122,5 +122,4 @@
   font-weight: 120;
   color: #fff;
   text-align: justify;
-
 }
