@@ -7,7 +7,7 @@ export function CheckTerm(props) {
       style={{
         marginLeft: "5%",
         display: "flex",
-        alignItems: "flex-end",
+        alignItems:  "center" ,
         flexWrap: "nowrap",
       }}
     >
