@@ -41,6 +41,24 @@ function Login() {
     }
   };
 
+  function verifyLogin(){
+    var message_error = ""
+    if(password === "" && username === ""){
+        message_error = "Usename and password are empty"
+    }else if(username === ""){
+        message_error = "Username is empty "
+    }else if(password === ""){
+        message_error = "Password is empty"
+    }else if(username.length <= 6){
+        message_error = "Username must have at least 6 characters"
+    }else if(password.length <= 8){
+        message_error = "password must have at least 8 characters"
+    }else{
+        message_error = "username or password are not valid"
+    }
+    return message_error
+}
+
   async function handleLogin() {
     let token = GetToken(username, password);
     const data = await LoginRequest(username, token);
@@ -73,16 +91,18 @@ function Login() {
         header={"Password"}
         type={"password"}
         onChange={handlePasswordChange}
-        alert={"The username or password is wrong"}
+        alert={verifyLogin()}
         alertStatus={passwordAlert}
       />
 
       <p id="forgotYourPassword">Forgot your password?</p>
+      <br/>
       <CheckTerm
         terms="Remember me"
         checked={rememberMe}
         onChange={handleRemember}
       />
+      <br/>
       <button id="roundButton" onClick={handleSubmit}>
         LOG IN
       </button>
