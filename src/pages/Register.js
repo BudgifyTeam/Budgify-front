@@ -39,6 +39,12 @@ function Register() {
   const handlePasswordConfirmChange = (event) => {
     setPasswordConfirm(event.target.value);
   };
+  function handleMarketingMessagesAuth(event) {
+    setMarketingMessagesAuth(event.target.checked);
+  }
+  function handleDataShareAuth(event) {
+    setDataShareAuth(event.target.checked);
+  }
 
   async function handleSubmit() {
     //regex and user verification
@@ -140,13 +146,15 @@ function Register() {
         />
         <br />
         <CheckTerm
-          terms={"I want to receive marketing messages from Budgify"}
+          terms={"I want to receive marketing messages from Budgify"} 
+          checked={marketingMessagesAuth}
+          onChange={handleMarketingMessagesAuth}
         />
         <br />
         <CheckTerm
-          terms={
-            "Sharing my registration data with Budgify's content providers for marketing purposes."
-          }
+          terms={"Sharing my registration data with Budgify's content providers for marketing purposes."}
+          checked={dataShareAuth}
+          onChange={handleDataShareAuth}
         />
         <br />
         <p id="termsRegister">
