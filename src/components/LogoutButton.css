@@ -1,0 +1,9 @@
+#logoutButton {
+  background-color: white;
+  border: 1px grey solid;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 200;
+}
