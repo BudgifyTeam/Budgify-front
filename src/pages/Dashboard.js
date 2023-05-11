@@ -1,19 +1,22 @@
 import React from "react";
-import LogoutButton from "../components/LogOutButton";
-import {Footer, Header, BudgetValue, WeekReview} from "../components/AppComponents";
+import {
+  Footer,
+  Header,
+  BudgetValue,
+  WeekReview, OperationMenu
+} from "../components/AppComponents";
 
 function Dashboard() {
   return (
-    <>
-      <Header/>
+    <div className="dashboardContainer">
+      <Header />
       <div>
-        <BudgetValue/>
-        <WeekReview/>
-        <p>Welcome to your Dashboard</p>
-        <LogoutButton />
+        <BudgetValue />
+        <WeekReview />
       </div>
+      <OperationMenu/>
       <Footer />
-    </>
+    </div>
   );
 }
 export default Dashboard;
