@@ -1,4 +1,6 @@
 import React from "react";
+import "./Dashboard.css"
+//import CandlestickChart from "../components/Graph";
 import {
   Footer,
   Header,
