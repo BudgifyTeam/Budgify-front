@@ -17,7 +17,7 @@ export function Header() {
         alt="Descripción de la imagen"
         onClick={handleImageClick}
       />
-      <span class="numero">$10,00</span>
+      <span className="numero">$10,00</span>
       {isMenuOpen && (
         <div className="menu">
           <LogoutButton/>
@@ -31,7 +31,7 @@ export function BudgetValue() {
     <div id="budgetCounter">
       <table>
         <tr>
-          <td rowspan="2">
+          <td rowSpan="2">
             <img
               id="bagImage"
               src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/Bag.png?alt=media&token=6d6e42ba-6a10-4c8a-9001-a0dc8e6b0bdf"
@@ -43,7 +43,7 @@ export function BudgetValue() {
           </td>
         </tr>
         <tr>
-          <td colspan="2" id="budgetSubtitle">
+          <td colSpan="2" id="budgetSubtitle">
             Budget
           </td>
         </tr>
