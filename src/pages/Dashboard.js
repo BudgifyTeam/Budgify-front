@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Dashboard.css";
-import url_back from "../api/config";
 //import CandlestickChart from "../components/Graph";
 import {
   Footer,
