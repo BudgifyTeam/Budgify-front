@@ -1,10 +1,16 @@
 import React, { useState } from "react";
+import { FormatIntegerWithDecimals } from "../utils/stringUtils";
 import "./AppComponents.css";
 import { Link } from "react-router-dom";
 import LogoutButton from "./LogOutButton";
 
-export function Header() {
+export function Header(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [budgetValue, setBudgetValue] = useState(() => {
+    const storedValue = localStorage.getItem('budgetValue');
+    return storedValue ? parseInt(storedValue) : 0;
+  });
+  const [image, setImage] = useState("https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/userimage.jpg?alt=media&token=df5dc86a-c48e-4786-9501-565b2ad15134");
 
   function handleImageClick() {
     setIsMenuOpen(!isMenuOpen);
@@ -13,11 +19,11 @@ export function Header() {
     <header>
       <img
         id="userImage"
-        src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/userimage.jpg?alt=media&token=df5dc86a-c48e-4786-9501-565b2ad15134"
+        src= {image}
         alt="Descripción de la imagen"
         onClick={handleImageClick}
       />
-      <span className="numero">$10,00</span>
+      <span className="numero">${FormatIntegerWithDecimals(budgetValue)}</span>
       {isMenuOpen && (
         <div className="menu">
           <LogoutButton/>
@@ -26,7 +32,11 @@ export function Header() {
     </header>
   );
 }
-export function BudgetValue() {
+export function BudgetValue(props) {
+  const [budgetValue, setBudgetValue] = useState(() => {
+    const storedValue = localStorage.getItem('budgetValue');
+    return storedValue ? parseInt(storedValue) : 0;
+  });
   return (
     <div id="budgetCounter">
       <table>
@@ -39,7 +49,7 @@ export function BudgetValue() {
             />
           </td>
           <td>
-            <span id="budgetValue">$100.000</span>
+            <span id="budgetValue">${FormatIntegerWithDecimals(budgetValue)}</span>
           </td>
         </tr>
         <tr>
@@ -92,19 +102,19 @@ function OperationButton(props){
 export function Footer() {
   return (
     <footer>
-      <Link to="/">
+      <Link to="/dashboard/history">
         <NavBarButton option="history" />
       </Link>
-      <Link to="/productos">
+      <Link to="/dashboard/wallets">
         <NavBarButton option="wallets" />
       </Link>
-      <Link to="/contacto">
+      <Link to="/dashboard">
         <NavBarButton option="home" />
       </Link>
-      <Link to="/contacto">
+      <Link to="/dashboard/pockets">
         <NavBarButton option="pockets" />
       </Link>
-      <Link to="/contacto">
+      <Link to="/dashboard/stats">
         <NavBarButton option="stats" />
       </Link>
     </footer>

@@ -2,24 +2,25 @@ import url_back from "./config.js";
 // ... use the API_URL constant in your API calls
 
 export async function LoginRequest(username, token) {
-  let uri = url_back + "Users/Login";
-  var user = {
+  var body = {
     username: username,
     token: token,
   };
+
   try {
-    const res = await fetch(uri, {
-      method: "POST",
+    const response = await fetch(url_back + 'Users/Login', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(body)
     });
-    const data = await res.json();
-    console.warn(data.message);
+
+    const data = await response.json();
     return data;
   } catch (error) {
-    console.warn(error.message);
+    console.error(error);
     throw error;
   }
 }
+

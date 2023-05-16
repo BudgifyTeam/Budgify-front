@@ -27,7 +27,6 @@ function Login() {
     let validUsername = true;
     const setUsernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
     validUsername = !setUsernamePattern.test(username) ? false : true;
-
     let validPassword = true;
     const passwordPattern =
       /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
@@ -62,7 +61,10 @@ function Login() {
   async function handleLogin() {
     let token = GetToken(username, password);
     const data = await LoginRequest(username, token);
+    console.log(data);
     if (data.code) {
+      var value = data.data.budget.value;
+      localStorage.setItem("budgetValue", value);
       if (rememberMe) {
         localStorage.setItem("token", token);
         console.log("Add Token");

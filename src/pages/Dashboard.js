@@ -1,11 +1,12 @@
 import React from "react";
-import "./Dashboard.css"
+import "./Dashboard.css";
 //import CandlestickChart from "../components/Graph";
 import {
   Footer,
   Header,
   BudgetValue,
-  WeekReview, OperationMenu
+  WeekReview,
+  OperationMenu,
 } from "../components/AppComponents";
 
 function Dashboard() {
@@ -16,9 +17,10 @@ function Dashboard() {
         <BudgetValue />
         <WeekReview />
       </div>
-      <OperationMenu/>
+      <OperationMenu />
       <Footer />
     </div>
   );
 }
+
 export default Dashboard;
