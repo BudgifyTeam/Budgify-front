@@ -6,11 +6,13 @@ import LogoutButton from "./LogOutButton";
 
 export function Header(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [budgetValue, setBudgetValue] = useState(() => {
-    const storedValue = localStorage.getItem('budgetValue');
+  const [budgetValue] = useState(() => {
+    const storedValue = localStorage.getItem("budgetValue");
     return storedValue ? parseInt(storedValue) : 0;
   });
-  const [image, setImage] = useState("https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/userimage.jpg?alt=media&token=df5dc86a-c48e-4786-9501-565b2ad15134");
+  const [image] = useState(
+    "https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/userimage.jpg?alt=media&token=df5dc86a-c48e-4786-9501-565b2ad15134"
+  );
 
   function handleImageClick() {
     setIsMenuOpen(!isMenuOpen);
@@ -19,22 +21,22 @@ export function Header(props) {
     <header>
       <img
         id="userImage"
-        src= {image}
+        src={image}
         alt="Descripción de la imagen"
         onClick={handleImageClick}
       />
       <span className="numero">${FormatIntegerWithDecimals(budgetValue)}</span>
       {isMenuOpen && (
         <div className="menu">
-          <LogoutButton/>
+          <LogoutButton />
         </div>
       )}
     </header>
   );
 }
 export function BudgetValue(props) {
-  const [budgetValue, setBudgetValue] = useState(() => {
-    const storedValue = localStorage.getItem('budgetValue');
+  const [budgetValue] = useState(() => {
+    const storedValue = localStorage.getItem("budgetValue");
     return storedValue ? parseInt(storedValue) : 0;
   });
   return (
@@ -49,7 +51,9 @@ export function BudgetValue(props) {
             />
           </td>
           <td>
-            <span id="budgetValue">${FormatIntegerWithDecimals(budgetValue)}</span>
+            <span id="budgetValue">
+              ${FormatIntegerWithDecimals(budgetValue)}
+            </span>
           </td>
         </tr>
         <tr>
@@ -72,31 +76,21 @@ export function WeekReview() {
   );
 }
 
-export function OperationMenu(){
-  return(
+export function OperationMenu() {
+  return (
     <div id="operationMenu">
-      <OperationButton option="Income"/>
-      <OperationButton option="Expense"/>
+      <OperationButton option="Income" />
+      <OperationButton option="Expense" />
     </div>
   );
 }
 
-function OperationButton(props){
-  if(props.option === "Income" || props.option === "Add Expense"){
-    return(
-      <button id="IncomeButton">
-        {props.option}
-      </button>
-    );
-  }else{
-    return(
-      <button id="ExpenseButton">
-        {props.option}
-      </button>
-    );
+function OperationButton(props) {
+  if (props.option === "Income" || props.option === "Add Expense") {
+    return <button id="IncomeButton">{props.option}</button>;
+  } else {
+    return <button id="ExpenseButton">{props.option}</button>;
   }
-
-  
 }
 
 export function Footer() {
