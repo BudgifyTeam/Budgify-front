@@ -25,7 +25,7 @@ function Login() {
 
   const handleSubmit = () => {
     let validUsername = true;
-    const setUsernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
+    const setUsernamePattern = /^[a-zA-Z0-9_]{2,15}$/;
     validUsername = !setUsernamePattern.test(username) ? false : true;
     let validPassword = true;
     const passwordPattern =
@@ -49,7 +49,7 @@ function Login() {
     }else if(password === ""){
         message_error = "Password is empty"
     }else if(username.length <= 6){
-        message_error = "Username must have at least 6 characters"
+        message_error = "Username must have at least 2 characters"
     }else if(password.length <= 8){
         message_error = "password must have at least 8 characters"
     }else{
