@@ -25,9 +25,8 @@ function Login() {
 
   const handleSubmit = () => {
     let validUsername = true;
-    const setUsernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
+    const setUsernamePattern = /^[a-zA-Z0-9_]{2,15}$/;
     validUsername = !setUsernamePattern.test(username) ? false : true;
-
     let validPassword = true;
     const passwordPattern =
       /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
@@ -41,10 +40,31 @@ function Login() {
     }
   };
 
+  function verifyLogin(){
+    var message_error = ""
+    if(password === "" && username === ""){
+        message_error = "Usename and password are empty"
+    }else if(username === ""){
+        message_error = "Username is empty "
+    }else if(password === ""){
+        message_error = "Password is empty"
+    }else if(username.length <= 6){
+        message_error = "Username must have at least 2 characters"
+    }else if(password.length <= 8){
+        message_error = "password must have at least 8 characters"
+    }else{
+        message_error = "username or password are not valid"
+    }
+    return message_error
+}
+
   async function handleLogin() {
     let token = GetToken(username, password);
     const data = await LoginRequest(username, token);
+    console.log(data);
     if (data.code) {
+      var value = data.data.budget.value;
+      localStorage.setItem("budgetValue", value);
       if (rememberMe) {
         localStorage.setItem("token", token);
         console.log("Add Token");
@@ -73,16 +93,18 @@ function Login() {
         header={"Password"}
         type={"password"}
         onChange={handlePasswordChange}
-        alert={"The username or password is wrong"}
+        alert={verifyLogin()}
         alertStatus={passwordAlert}
       />
 
       <p id="forgotYourPassword">Forgot your password?</p>
+      <br/>
       <CheckTerm
         terms="Remember me"
         checked={rememberMe}
         onChange={handleRemember}
       />
+      <br/>
       <button id="roundButton" onClick={handleSubmit}>
         LOG IN
       </button>

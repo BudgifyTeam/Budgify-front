@@ -48,7 +48,7 @@ function Register() {
 
   async function handleSubmit() {
     //regex and user verification
-    const usernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
+    const usernamePattern = /^[a-zA-Z0-9_]{2,15}$/;
     setUsernameAlert(!usernamePattern.test(username) ? "noHidden" : "hidden");
     //regex and mail verification
     const mailaddressPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -110,7 +110,7 @@ function Register() {
           header={"Whats your username?"}
           onChange={handleUsernameChange}
           alert={
-            "Enter valid a username (6 - 15 charts, only numbers, letters and underscores)"
+            "Enter valid a username (2 - 15 charts, only numbers, letters and underscores)"
           }
           alertStatus={usernameAlert}
         />

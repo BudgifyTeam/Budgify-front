@@ -1,13 +1,26 @@
 import React from "react";
-import LogoutButton from "../components/LogOutButton";
-import "../styles.css";
+import "./Dashboard.css";
+//import CandlestickChart from "../components/Graph";
+import {
+  Footer,
+  Header,
+  BudgetValue,
+  WeekReview,
+  OperationMenu,
+} from "../components/AppComponents";
 
 function Dashboard() {
   return (
-    <div>
-      <p>Welcome to your Dashboard</p>
-      <LogoutButton />
+    <div className="dashboardContainer">
+      <Header />
+      <div>
+        <BudgetValue />
+        <WeekReview />
+      </div>
+      <OperationMenu />
+      <Footer />
     </div>
   );
 }
+
 export default Dashboard;
