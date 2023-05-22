@@ -64,6 +64,8 @@ function Login() {
     console.log(data);
     if (data.code) {
       var value = data.data.budget.value;
+      const userId = data.data.userId;
+      localStorage.setItem('userId', userId);
       localStorage.setItem("budgetValue", value);
       if (rememberMe) {
         localStorage.setItem("token", token);

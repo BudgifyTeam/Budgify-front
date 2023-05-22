@@ -1,0 +1,70 @@
+#IAEValueInput {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 30px;
+  height: 40px;
+  width: 145px;
+  border: solid 1px gray;
+}
+
+
+#walletSelector{
+  border: solid 1px gray;
+  border-radius: 30px;
+  height: 40px;
+  width: 145px;
+}
+
+#categorySelector{
+  border: solid 1px gray;
+  border-radius: 30px;
+  height: 40px;
+  width: 220px;
+}
+
+#dateSelector{
+  padding-left: 15px;
+  padding-right: 15px;
+  border: solid 1px gray;
+  font-family: "Gemunu Libre", sans-serif;
+  font-size: 20px;
+  border-radius: 30px;
+  height: 40px;
+  width: 220px;
+}
+.datepicker-button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+#incomeOrExpenseMenu{
+  text-align: center;
+  padding-bottom: 10px;
+  padding-top: 18px;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0px -7px 7px 0px rgba(0, 0, 0, 0.15);
+  bottom: 80px;
+}
+
+#premadeDateButton{
+  border-top: 100px;
+  font-family: "Gemunu Libre", sans-serif;
+  background-color: white;
+  border: solid 1px gray;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 20px;
+}
+
+td{
+  padding-top: 13px;
+}
+
+table{
+  border-top: 100px;
+  text-align: center;
+}
