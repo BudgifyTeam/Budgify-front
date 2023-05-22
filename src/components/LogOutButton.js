@@ -5,6 +5,7 @@ import "./LogoutButton.css"
 function LogoutButton() {
   async function logoutSubmit() {
     await localStorage.removeItem("budgetValue");
+    await localStorage.removeItem("userId");
     if (localStorage.getItem("token") != null) {
       await localStorage.removeItem("token");
     }

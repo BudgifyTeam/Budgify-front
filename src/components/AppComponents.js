@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { FormatIntegerWithDecimals } from "../utils/stringUtils";
 import "./AppComponents.css";
 import { Link } from "react-router-dom";
@@ -13,7 +13,6 @@ export function Header(props) {
   const [image] = useState(
     "https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/userimage.jpg?alt=media&token=df5dc86a-c48e-4786-9501-565b2ad15134"
   );
-
   function handleImageClick() {
     setIsMenuOpen(!isMenuOpen);
   }
@@ -25,7 +24,8 @@ export function Header(props) {
         alt="Descripción de la imagen"
         onClick={handleImageClick}
       />
-      <span className="numero">${FormatIntegerWithDecimals(budgetValue)}</span>
+      <h2>{props.title}</h2>
+      <span className="numero">${budgetValue}</span>
       {isMenuOpen && (
         <div className="menu">
           <LogoutButton />
@@ -34,6 +34,8 @@ export function Header(props) {
     </header>
   );
 }
+
+
 export function BudgetValue(props) {
   const [budgetValue] = useState(() => {
     const storedValue = localStorage.getItem("budgetValue");
@@ -79,8 +81,12 @@ export function WeekReview() {
 export function OperationMenu() {
   return (
     <div id="operationMenu">
-      <OperationButton option="Income" />
-      <OperationButton option="Expense" />
+      <Link to="/dashboard/income">
+        <OperationButton option="Income" />
+      </Link>
+      <Link to="/dashboard/expense">
+        <OperationButton option="Expense" />
+      </Link>
     </div>
   );
 }

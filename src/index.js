@@ -8,6 +8,7 @@ import Pockets from "./pages/Pockets";
 import Stats from "./pages/Stats";
 import Wallets from "./pages/Wallets";
 import History from "./pages/history";
+import {Income} from "./pages/Income";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const root = ReactDom.createRoot(document.getElementById("root"));
@@ -18,6 +19,7 @@ root.render(
       <Routes>
         <Route exact path="/" element={<App />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/dashboard/income" element={<Income/>} />
         <Route exact path="/dashboard/pockets" element={<Pockets />} />
         <Route exact path="/dashboard/stats" element={<Stats />} />
         <Route exact path="/dashboard/wallets" element={<Wallets />} />
