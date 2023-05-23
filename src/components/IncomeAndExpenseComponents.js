@@ -63,6 +63,30 @@ export function WalletSelector(props) {
   );
 }
 
+export function PocketSelector(props) {
+  const handleWalletChange = (event) => {
+    props.onWalletChange(event.target.value);
+    console.log(event.target.value);
+  };
+  return (
+    <>
+      <h2>Pocket</h2>
+      <select
+        id="pocketSelector"
+        className="form-select"
+        onChange={handleWalletChange}
+      >
+        {props.pockets.map((pocket, index) => (
+          <option key={index} value={pocket}>
+            {pocket}
+          </option>
+        ))}
+      </select>
+      Balance: 0
+    </>
+  );
+}
+
 export function DateSelector(props) {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
 
@@ -137,7 +161,20 @@ export function OperationIncomeMenu(props) {
   return (
     <div id="incomeOrExpenseMenu">
       <Link to="/dashboard">
-        <OperationButton option="Income" onClick={handleClick} />
+        <OperationButton option="Add Income" onClick={handleClick} />
+      </Link>
+    </div>
+  );
+}
+
+export function OperationExpenseMenu(props) {
+  const handleClick = () => {
+    props.onClick(props.option);
+  };
+  return (
+    <div id="incomeOrExpenseMenu">
+      <Link to="/dashboard">
+        <OperationButton option="Add Expense" onClick={handleClick} />
       </Link>
     </div>
   );
@@ -147,7 +184,7 @@ function OperationButton(props) {
   const handleClick = () => {
     props.onClick(props.option);
   };
-  if (props.option === "Income" || props.option === "Add Expense") {
+  if (props.option === "Income" || props.option === "Add Income") {
     return (
       <button id="IncomeButton" onClick={handleClick}>
         {props.option}

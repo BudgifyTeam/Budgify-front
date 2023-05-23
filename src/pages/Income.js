@@ -8,7 +8,7 @@ import {
 import { Header, Footer } from "../components/AppComponents";
 import "./Income.css";
 import { GetWalletsRequest } from "../api/DashboardAPI";
-import { MakeInputRequest } from "../api/IncomeAPI";
+import { MakeIncomeRequest } from "../api/IncomeAPI";
 
 
 export function Income() {
@@ -59,7 +59,7 @@ export function Income() {
     console.log(inputValue);
     console.log(selectedDate);
       
-    MakeInputRequest(walletId, inputValue, selectedDate)
+    MakeIncomeRequest(walletId, inputValue, selectedDate)
       .then((responseData) => {
         console.log(responseData);
       })
