@@ -24,7 +24,7 @@ export default function Income() {
   };
   useEffect(() => {
     if (wallets !== null) {
-      setWalletId(getWalletIdByName(wallets, selectedWallet.split('-')[0]));
+      setWalletId(getWalletIdByName(wallets, selectedWallet));
     }
   }, [selectedWallet, wallets]);
   const handleWalletChange = (selectedValue) => {
@@ -34,7 +34,7 @@ export default function Income() {
     GetWalletsRequest()
       .then((responseData) => {
         setWallets(responseData);
-        setWalletNames(responseData.data.map((obj) => obj.name+'-'+obj.total));
+        setWalletNames(responseData.data.map((obj) => obj.name));
       })
       .catch((error) => {
         console.error(error);
