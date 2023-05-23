@@ -9,11 +9,10 @@ export async function MakeExpenseRequest(walletId, inputValue, selectedDate, poc
       date:
         selectedDate +
         "T" +
-        date.getHours() +
+        date.getHours().toString().padStart(2, "0") +
         ":" +
-        date.getMinutes() +
-        ":00" +
-        "Z",
+        date.getMinutes().toString().padStart(2, "0") +
+        ":00Z",
       wallet_id: walletId,
       pocket_id: pocket_id,
       category_id: category_id

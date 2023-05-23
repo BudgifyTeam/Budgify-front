@@ -9,11 +9,10 @@ export async function MakeIncomeRequest(walletId, inputValue, selectedDate) {
     date:
       selectedDate +
       "T" +
-      date.getHours() +
+      date.getHours().toString().padStart(2, "0") +
       ":" +
-      date.getMinutes() +
-      ":00" +
-      "Z",
+      date.getMinutes().toString().padStart(2, "0") +
+      ":00Z",
     wallet_id: parseInt(walletId),
   });
   const url = `${baseUrl}?${queryParams.toString()}`;
