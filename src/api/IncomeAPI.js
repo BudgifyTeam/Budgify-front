@@ -1,6 +1,6 @@
 import url_back from "./config";
 
-export async function MakeInputRequest(walletId, inputValue, selectedDate) {
+export async function MakeIncomeRequest(walletId, inputValue, selectedDate) {
   const baseUrl = url_back + "Income/CreateIncome";
   let date = new Date();
   var queryParams = new URLSearchParams({

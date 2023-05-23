@@ -10,6 +10,7 @@ import Wallets from "./pages/Wallets";
 import History from "./pages/history";
 import {Income} from "./pages/Income";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Expense from "./pages/Expense";
 
 const root = ReactDom.createRoot(document.getElementById("root"));
 
@@ -20,6 +21,7 @@ root.render(
         <Route exact path="/" element={<App />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/dashboard/income" element={<Income/>} />
+        <Route exact path="/dashboard/expense" element={<Expense/>} />
         <Route exact path="/dashboard/pockets" element={<Pockets />} />
         <Route exact path="/dashboard/stats" element={<Stats />} />
         <Route exact path="/dashboard/wallets" element={<Wallets />} />
