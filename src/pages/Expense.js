@@ -122,14 +122,17 @@ export default function Expense() {
     console.log(selectedDate);
     console.log(pocketId);
     console.log(categoryId);
+    if(inputValue !== null){
+        MakeExpenseRequest(walletId, inputValue, selectedDate, pocketId, categoryId)
+        .then((responseData) => {
+          console.log(responseData);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
 
-    MakeExpenseRequest(walletId, inputValue, selectedDate, pocketId, categoryId)
-      .then((responseData) => {
-        console.log(responseData);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    
   };
 
   return (
