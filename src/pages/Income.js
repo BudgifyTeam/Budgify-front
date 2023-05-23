@@ -58,14 +58,15 @@ export default function Income() {
     console.log(walletId);
     console.log(inputValue);
     console.log(selectedDate);
-      
-    MakeIncomeRequest(walletId, inputValue, selectedDate)
-      .then((responseData) => {
-        console.log(responseData);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (inputValue != null){
+      MakeIncomeRequest(walletId, inputValue, selectedDate)
+        .then((responseData) => {
+          console.log(responseData);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
   
 
