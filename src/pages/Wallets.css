@@ -1,0 +1,6 @@
+.WalletsContainer{
+    display: flex;
+    flex-direction: column;
+    padding-left: 4%;
+    padding-right: 4%;
+}

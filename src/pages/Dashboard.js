@@ -12,7 +12,7 @@ function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const delay = 500;
+    const delay = 1000;
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, delay);

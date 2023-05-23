@@ -14,7 +14,7 @@ export async function MakeIncomeRequest(walletId, inputValue, selectedDate) {
       date.getMinutes() +
       ":00" +
       "Z",
-    wallet_id: walletId,
+    wallet_id: parseInt(walletId),
   });
   const url = `${baseUrl}?${queryParams.toString()}`;
 
