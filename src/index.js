@@ -8,7 +8,7 @@ import Pockets from "./pages/Pockets";
 import Stats from "./pages/Stats";
 import Wallets from "./pages/Wallets";
 import History from "./pages/history";
-import {Income} from "./pages/Income";
+import Income from "./pages/Income";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Expense from "./pages/Expense";
 

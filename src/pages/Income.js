@@ -11,7 +11,7 @@ import { GetWalletsRequest } from "../api/DashboardAPI";
 import { MakeIncomeRequest } from "../api/IncomeAPI";
 
 
-export function Income() {
+export default function Income() {
   const [inputValue, setInputValue] = useState('');
   const [wallets, setWallets] = useState(null);
   const [walletNames, setWalletNames] = useState(null);
