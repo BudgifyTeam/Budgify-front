@@ -10,20 +10,21 @@ import "./Income.css";
 import { GetWalletsRequest } from "../api/DashboardAPI";
 import { MakeIncomeRequest } from "../api/IncomeAPI";
 
-
 export default function Income() {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [wallets, setWallets] = useState(null);
   const [walletNames, setWalletNames] = useState(null);
   const [walletId, setWalletId] = useState(null);
   const [selectedWallet, setSelectedWallet] = useState("");
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
+  const [selectedDate, setSelectedDate] = useState(
+    new Date().toISOString().split("T")[0]
+  );
   const handleInputChange = (value) => {
     setInputValue(value);
   };
   useEffect(() => {
     if (wallets !== null) {
-      setWalletId(getWalletIdByName(wallets, selectedWallet));
+      setWalletId(getWalletIdByName(wallets, selectedWallet.split('-')[0]));
     }
   }, [selectedWallet, wallets]);
   const handleWalletChange = (selectedValue) => {
@@ -33,7 +34,7 @@ export default function Income() {
     GetWalletsRequest()
       .then((responseData) => {
         setWallets(responseData);
-        setWalletNames(responseData.data.map((obj) => obj.name));
+        setWalletNames(responseData.data.map((obj) => obj.name+'-'+obj.total));
       })
       .catch((error) => {
         console.error(error);
@@ -52,13 +53,12 @@ export default function Income() {
     setSelectedDate(date);
   };
 
-
   const handleButtonClick = () => {
     console.log("Botón clickeado");
     console.log(walletId);
     console.log(inputValue);
     console.log(selectedDate);
-    if (inputValue != null){
+    if (inputValue != null) {
       MakeIncomeRequest(walletId, inputValue, selectedDate)
         .then((responseData) => {
           console.log(responseData);
@@ -68,13 +68,12 @@ export default function Income() {
         });
     }
   };
-  
 
   return (
     <div className="dashboardContainer">
       <Header title="Income " />
       <div className="IncomeContainer">
-        <IAEValueInput onInputChange={handleInputChange}/>
+        <IAEValueInput onInputChange={handleInputChange} />
         <hr />
         <WalletSelector
           wallets={walletNames}

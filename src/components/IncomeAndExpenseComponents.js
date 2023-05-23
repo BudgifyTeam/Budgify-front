@@ -40,10 +40,15 @@ export function CategorySelector(props) {
 }
 
 export function WalletSelector(props) {
+  const [walletValue, setWalletValue] = useState(0);
+
   const handleWalletChange = (event) => {
-    props.onWalletChange(event.target.value);
-    console.log(event.target.value);
+    const selectedWallet = event.target.value;
+    const selectedValue = selectedWallet.split('-')[1];
+    setWalletValue(selectedValue);
+    props.onWalletChange(selectedWallet);
   };
+
   return (
     <>
       <h2>Wallet</h2>
@@ -54,11 +59,11 @@ export function WalletSelector(props) {
       >
         {props.wallets.map((wallet, index) => (
           <option key={index} value={wallet}>
-            {wallet}
+            {wallet.split('-')[0]}
           </option>
         ))}
       </select>
-      Balance: 0
+      Balance: {walletValue}
     </>
   );
 }
