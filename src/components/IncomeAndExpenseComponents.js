@@ -40,7 +40,6 @@ export function CategorySelector(props) {
 }
 
 export function WalletSelector(props) {
-
   const handleWalletChange = (event) => {
     const selectedWallet = event.target.value;
     props.onWalletChange(selectedWallet);
