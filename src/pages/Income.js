@@ -9,8 +9,11 @@ import { Header, Footer } from "../components/AppComponents";
 import "./Income.css";
 import { GetWalletsRequest } from "../api/DashboardAPI";
 import { MakeIncomeRequest } from "../api/IncomeAPI";
+import { ErrorNotificationPopup, ValidTransactionPopup } from "../components/Popups";
 
 export default function Income() {
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [validPopup, setValidPopup] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [wallets, setWallets] = useState(null);
   const [walletNames, setWalletNames] = useState(null);
@@ -61,7 +64,13 @@ export default function Income() {
     if (inputValue != null) {
       MakeIncomeRequest(walletId, inputValue, selectedDate)
         .then((responseData) => {
-          console.log(responseData);
+          console.log(responseData.code);
+          if (responseData.code) {
+            console.log("shi");
+            setValidPopup(true);
+          } else {
+            setErrorPopup(true);
+          }
         })
         .catch((error) => {
           console.error(error);
@@ -81,6 +90,16 @@ export default function Income() {
         />
         <DateSelector onDateChange={handleDateChange} />
         <OperationIncomeMenu onClick={handleButtonClick} />
+        <ErrorNotificationPopup
+          trigger={errorPopup}
+          setTrigger={setErrorPopup}
+          error={"No se realizo el ingreso, valida la informacion"}
+        />
+        <ValidTransactionPopup
+          trigger={validPopup}
+          setTrigger={setValidPopup}
+          message={"Se realizo el ingreso correctamente"}
+        />
       </div>
       <Footer />
     </div>

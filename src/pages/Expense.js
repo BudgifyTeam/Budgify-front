@@ -8,10 +8,19 @@ import {
   OperationExpenseMenu,
   PocketSelector,
 } from "../components/IncomeAndExpenseComponents";
-import { GetWalletsRequest, GetCategoriesRequest, GetPocketsRequest } from "../api/DashboardAPI";
+import {
+  GetWalletsRequest,
+  GetCategoriesRequest,
+  GetPocketsRequest,
+} from "../api/DashboardAPI";
 import { MakeExpenseRequest } from "../api/ExpenseAPI";
+import "./Expense.css";
+import { ErrorNotificationPopup, ValidTransactionPopup } from "../components/Popups";
 
 export default function Expense() {
+  
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [validPopup, setValidPopup] = useState(false);
   const [pockets, setPockets] = useState(null);
   const [pocketNames, setPocketNames] = useState(null);
   const [pocketId, setPocketId] = useState(null);
@@ -22,7 +31,7 @@ export default function Expense() {
 
   useEffect(() => {
     if (pockets !== null) {
-        setPocketId(getPocketIdByName(pockets, selectedPocket));
+      setPocketId(getPocketIdByName(pockets, selectedPocket));
     }
   }, [selectedPocket, pockets]);
 
@@ -37,7 +46,7 @@ export default function Expense() {
       });
   }, []);
   //=========================================================
-  
+
   const [inputValue, setInputValue] = useState("");
   const handleInputChange = (value) => {
     setInputValue(value);
@@ -108,13 +117,15 @@ export default function Expense() {
       setCategoryID(categories.data[0].category_id);
     }
     if (pocketId === null) {
-        setPocketId(pockets.data[0].pocket_id);
-      }
+      setPocketId(pockets.data[0].pocket_id);
+    }
   }
 
   //=================================================================================
 
   //=================================================================================
+  
+
   const handleButtonClick = () => {
     console.log("Botón clickeado");
     console.log(walletId);
@@ -122,17 +133,26 @@ export default function Expense() {
     console.log(selectedDate);
     console.log(pocketId);
     console.log(categoryId);
-    if(inputValue !== null){
-        MakeExpenseRequest(walletId, inputValue, selectedDate, pocketId, categoryId)
+    if (inputValue !== null) {
+      MakeExpenseRequest(
+        walletId,
+        inputValue,
+        selectedDate,
+        pocketId,
+        categoryId
+      )
         .then((responseData) => {
-          console.log(responseData);
+          if (responseData.code) {
+            console.log("shi");
+            setValidPopup(true);
+          } else {
+            setErrorPopup(true);
+          }
         })
         .catch((error) => {
           console.error(error);
         });
     }
-
-    
   };
 
   return (
@@ -145,14 +165,26 @@ export default function Expense() {
           categories={categoriesNames}
           onWalletChange={handleCategoryChange}
         />
-        <WalletSelector
-          wallets={walletNames}
-          onWalletChange={handleWalletChange}
-        />
-        <PocketSelector pockets={pocketNames}
-        onWalletChange={handlePocketChange}/>
+          <WalletSelector
+            wallets={walletNames}
+            onWalletChange={handleWalletChange}
+          />
+          <PocketSelector
+            pockets={pocketNames}
+            onWalletChange={handlePocketChange}
+          />
         <DateSelector onDateChange={handleDateChange} />
         <OperationExpenseMenu onClick={handleButtonClick} />
+        <ErrorNotificationPopup
+          trigger={errorPopup}
+          setTrigger={setErrorPopup}
+          error="No se realizó el gasto, verifica la información"
+        />
+        <ValidTransactionPopup
+          trigger={validPopup}
+          setTrigger={setValidPopup}
+          message="Se realizó el gasto correctamente"
+        />
       </div>
       <Footer />
     </div>
@@ -176,9 +208,9 @@ function getCategoryIdByName(data, categoryName) {
 }
 
 function getPocketIdByName(data, pocketName) {
-    const pocket = data.data.find((pocket) => pocket.name === pocketName);
-    if (pocket) {
-      return pocket.pocket_id;
-    }
-    return null; // Si no se encuentra la cartera, retorna null o un valor indicativo de que no se encontró
+  const pocket = data.data.find((pocket) => pocket.name === pocketName);
+  if (pocket) {
+    return pocket.pocket_id;
   }
+  return null; // Si no se encuentra la cartera, retorna null o un valor indicativo de que no se encontró
+}
