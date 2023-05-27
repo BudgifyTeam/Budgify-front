@@ -1,48 +1,63 @@
-.walletButton{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.30);
-    background-color: white;
-    border: 0px;
-    height: 100px;
-    text-align: center;
-    padding-left: 5%;
-    padding-right: 5%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.walletButton {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  border: 0px;
+  height: 100px;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
-.walletIcon{
-    width: 70px;
+.walletIcon {
+  width: 70px;
 }
-#WalletInfo{
-    font-family: 'Roboto', sans-serif;
-    font-weight: 200;
-    font-size: 28px;
-    
+#WalletInfo {
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+  font-size: 28px;
 }
-#valuesData{
-    font-family: 'Gemunu Libre';
+#valuesData {
+  font-family: "Gemunu Libre";
 }
-.editButtonsContainer{
-    width: 100%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.30);
-}
-
-#optionButtonleft{
-    background-color: white;
-    border: 0px;
-    width: 50%;
-}
-#optionButtonRigth{
-    width: 50%;
-    background-color: white;
-    border: 0px;
-    border-left: 1.9px solid black;
+.editButtonsContainer {
+  width: 100%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
 
-.optionIcon{
-    width: 25px;
+#optionButtonleft {
+  background-color: white;
+  border: 0px;
+  width: 50%;
+}
+#optionButtonRigth {
+  width: 50%;
+  background-color: white;
+  border: 0px;
+  border-left: 1.9px solid black;
+}
+
+.optionIcon {
+  width: 25px;
+}
+
+#AddButton {
+  background: #d062e9;
+  border: 0px;
+  font-size: 30px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  color: white;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  bottom: 120px;
+  left: 80%;
 }

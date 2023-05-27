@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { GetWalletsRequest } from "../api/DashboardAPI";
-import { WalletButton } from "../components/WalletsComponents";
+import { WalletButton, AddButton } from "../components/WalletsComponents";
 import { Footer, Header } from "../components/AppComponents";
 import "./Wallets.css";
 
 function Wallets() {
   const [wallets, setWallets] = useState([]);
+
   useEffect(() => {
     GetWalletsRequest()
       .then((responseData) => {
@@ -18,11 +19,12 @@ function Wallets() {
 
   return (
     <div className="dashboardContainer">
-      <Header title="Wallets"/>
+      <Header title="Wallets" />
       <div className="WalletsContainer">
         {wallets.map((wallet, index) => (
-          <WalletButton value={wallet} index={index}/>
+          <WalletButton value={wallet} index={index} key={index} />
         ))}
+        <AddButton />
       </div>
       <Footer />
     </div>
