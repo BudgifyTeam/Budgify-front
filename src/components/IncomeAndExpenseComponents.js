@@ -50,7 +50,7 @@ export function OnlyCategorySelector(props) {
   console.log(props.categories);
   return (
     <>
-      <select id="categorySelector" className="form-select" 
+      <select id="pocketSelector" className="form-select" 
         onChange={handleCategoryChange}>
         {props.categories.map((category, index) =>
           category === props.categoryName ? null : (

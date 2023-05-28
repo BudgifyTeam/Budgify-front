@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GetCategoriesRequest } from "../api/CategoriesAPI";
 import CategoryComponent from "../components/CategoriesComponents";
 import { Footer, Header } from "../components/AppComponents";
-import { AddButton } from "../components/WalletsComponents";
+import { AddCategoryButton } from "../components/CategoriesComponents";
 import "./Categories.css";
 
 function Categories() {
@@ -29,7 +29,7 @@ function Categories() {
             <CategoryComponent value={category} index={index} key={index} />
           ))
         )}
-        {!isLoading && <AddButton />}
+        {!isLoading && <AddCategoryButton />}
       </div>
       <Footer />
     </div>

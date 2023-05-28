@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./CategoriesComponents.css";
 import { EditPocketsRequest } from "../api/CategoriesAPI";
-import { DeleteCategoryPopup } from "../components/Popups";
+import { DeleteCategoryPopup, CreateCategoryPopup } from "../components/Popups";
 import {
   ErrorNotificationPopup,
   ValidTransactionPopup,
@@ -100,5 +100,20 @@ function RenameCategory(props) {
         message={"Se modifico la categoria correctamente"}
       />
     </div>
+  );
+}
+
+export function AddCategoryButton() {
+  const [addCategoryPopUp, setAddCategoryPopUp] = useState(false);
+  return (
+    <>
+      <button id="AddButton" onClick={() => setAddCategoryPopUp(true)}>
+        +
+      </button>
+      <CreateCategoryPopup
+        trigger={addCategoryPopUp}
+        setTrigger={setAddCategoryPopUp}
+      />
+    </>
   );
 }

@@ -9,7 +9,7 @@ import { DeletePocketsRequest, GetPocketsRequest } from "../api/PocketAPI";
 import { GetWalletsRequest } from "../api/WalletAPI";
 import { DeleteWalletRequest } from "../api/WalletAPI";
 import { GetCategoriesRequest } from "../api/CategoriesAPI";
-import { DeleteCategoryRequest } from "../api/CategoriesAPI";
+import { DeleteCategoryRequest, CreateCategoryRequest } from "../api/CategoriesAPI";
 export function Popup(props) {
   return props.trigger ? (
     <div className="popup">
@@ -240,6 +240,55 @@ export function ValidTransactionPopup(props) {
   );
 }
 
+export function CreateCategoryPopup(props) {
+  
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [validPopup, setValidPopup] = useState(false);
+  const [inputName, setInputName] = useState("");
+  const handleInputChange = (event) => {
+    setInputName(event.target.value);
+  };
+  const handleCreateClick = () => {
+    CreateCategoryRequest(inputName)
+    .then((responseData) => {
+      if (responseData.code) {
+        setValidPopup(true);
+      } else {
+        setErrorPopup(true);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  };
+  return props.trigger ? (
+    <div className="popup">
+      <div className="popup-inner">
+        <h1 className="popup-title">Crear Categoria</h1>
+        <p className="popup-text">nombre</p>
+        <input id="NewNameInput" value={inputName} onChange={handleInputChange} />
+        <button
+          id="onlyButton"
+          onClick={handleCreateClick}
+        >
+          Crear
+        </button>
+        <ErrorNotificationPopup
+          trigger={errorPopup}
+          setTrigger={setErrorPopup}
+          error={"No se creo la categoria, valida la informacion"}
+        />
+        <ValidTransactionPopup
+          trigger={validPopup}
+          setTrigger={setValidPopup}
+          message={"Se creo la categoria correctamente"}
+        />
+      </div>
+    </div>
+  ) : (
+    ""
+  );
+}
 function getCategoryIdByName(categories, name) {
   const category = categories.find((category) => category.name === name);
   return category ? category.category_id : null;
