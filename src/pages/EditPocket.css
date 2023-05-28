@@ -1,0 +1,9 @@
+.EditPocketContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#EditPocketImage{
+    width: 125px;
+    border-radius: 50%;
+}

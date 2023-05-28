@@ -24,10 +24,13 @@
   width: 220px;
 }
 #pocketSelector{
+  text-align: center;
   border: solid 1px gray;
   border-radius: 30px;
   height: 40px;
-  width: 220px;
+  margin-left: 15%;
+  width: 70%;
+  margin-bottom: 15px;
 }
 
 #dateSelector{
