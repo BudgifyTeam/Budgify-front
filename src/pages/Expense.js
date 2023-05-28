@@ -9,10 +9,10 @@ import {
   PocketSelector,
 } from "../components/IncomeAndExpenseComponents";
 import {
-  GetWalletsRequest,
   GetCategoriesRequest,
   
 } from "../api/DashboardAPI";
+import { GetWalletsRequest } from "../api/WalletAPI";
 
 import { GetPocketsRequest } from "../api/PocketAPI";
 import { MakeExpenseRequest } from "../api/ExpenseAPI";

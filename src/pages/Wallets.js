@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GetWalletsRequest } from "../api/DashboardAPI";
+import { GetWalletsRequest } from "../api/WalletAPI";
 import { WalletButton, AddButton } from "../components/WalletsComponents";
 import { Footer, Header } from "../components/AppComponents";
 import "./Wallets.css";

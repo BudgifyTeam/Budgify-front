@@ -7,12 +7,12 @@ import {
 } from "../components/IncomeAndExpenseComponents";
 import { Header, Footer } from "../components/AppComponents";
 import "./Income.css";
-import { GetWalletsRequest } from "../api/DashboardAPI";
 import { MakeIncomeRequest } from "../api/IncomeAPI";
 import {
   ErrorNotificationPopup,
   ValidTransactionPopup,
 } from "../components/Popups";
+import { GetWalletsRequest } from "../api/WalletAPI";
 
 export default function Income() {
   const [errorPopup, setErrorPopup] = useState(false);
