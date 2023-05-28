@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./FormsComponents.css";
 
 export function CheckTerm(props) {
@@ -7,7 +7,7 @@ export function CheckTerm(props) {
       style={{
         marginLeft: "5%",
         display: "flex",
-        alignItems:  "center" ,
+        alignItems: "center",
         flexWrap: "nowrap",
       }}
     >
@@ -38,13 +38,34 @@ export function Header() {
 }
 
 export function UserForm(props) {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <h1 id="formHeader">{props.header}</h1>
-      <input type={props.type} id="formInput" onChange={props.onChange} />
+      <div>
+        <input
+          type={
+            props.type === 'password' && !showPassword ? 'password' : 'text'
+          }
+          id={props.type === 'password' ? 'formPasswordInput' : 'formInput'}
+          onChange={props.onChange}
+        />
+        {props.type === 'password' && (
+          <button onClick={handleTogglePassword} id="showPassButton">
+            <img id="eyeImage" src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/ojo.png?alt=media&token=4f27b8b6-97b1-400e-9752-44c2ddb2a003"
+            alt=""></img>
+          </button>
+        )}
+      </div>
+
       <div
         className={`alert alert-danger p-1 ${
-          props.alertStatus === "hidden" ? "d-none" : ""
+          props.alertStatus === 'hidden' ? 'd-none' : ''
         }`}
         role="alert"
       >
