@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./LogoutButton.css"
+import "./LogoutButton.css";
 
 function LogoutButton() {
   async function logoutSubmit() {
@@ -13,11 +13,16 @@ function LogoutButton() {
   }
 
   return (
-    <>
+    <div id="profilePanel">
       <Link to="/Login">
-        <button onClick={logoutSubmit} id="logoutButton">Log Out</button>
+        <button onClick={logoutSubmit} id="logoutButton">
+          Log Out
+        </button>
       </Link>
-    </>
+      <Link to="/Categories">
+        <button id="logoutButton">Categorias</button>
+      </Link>
+    </div>
   );
 }
 

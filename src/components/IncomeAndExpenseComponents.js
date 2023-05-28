@@ -42,6 +42,28 @@ export function CategorySelector(props) {
   );
 }
 
+export function OnlyCategorySelector(props) {
+  const handleCategoryChange = (event) => {
+    const selectedCategory = event.target.value;
+    props.onWalletChange(selectedCategory);
+  };
+  console.log(props.categories);
+  return (
+    <>
+      <select id="pocketSelector" className="form-select" 
+        onChange={handleCategoryChange}>
+        {props.categories.map((category, index) =>
+          category === props.categoryName ? null : (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          )
+        )}
+      </select>
+    </>
+  );
+}
+
 export function WalletSelector(props) {
   const handleWalletChange = (event) => {
     const selectedWallet = event.target.value;
@@ -79,13 +101,13 @@ export function OnlyPocketSelector(props) {
         className="form-select"
         onChange={handleWalletChange}
       >
-        {props.pockets.map((pocket, index) => (
+        {props.pockets.map((pocket, index) =>
           pocket === props.pocket ? null : (
             <option key={index} value={pocket}>
               {pocket === "default" ? "Selecciona un pocket..." : pocket}
             </option>
           )
-        ))}
+        )}
       </select>
     </>
   );
@@ -106,7 +128,7 @@ export function PocketSelector(props) {
       >
         {props.pockets.map((pocket, index) => (
           <option key={index} value={pocket}>
-            {pocket==="default"?"Selecciona un pocket...":pocket}
+            {pocket === "default" ? "Selecciona un pocket..." : pocket}
           </option>
         ))}
       </select>
@@ -203,7 +225,7 @@ export function OperationExpenseMenu(props) {
   };
   return (
     <div id="incomeOrExpenseMenu">
-        <OperationButton option="Add Expense" onClick={handleClick} />
+      <OperationButton option="Add Expense" onClick={handleClick} />
     </div>
   );
 }

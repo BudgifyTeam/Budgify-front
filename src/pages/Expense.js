@@ -8,10 +8,7 @@ import {
   OperationExpenseMenu,
   PocketSelector,
 } from "../components/IncomeAndExpenseComponents";
-import {
-  GetCategoriesRequest,
-  
-} from "../api/DashboardAPI";
+import { GetCategoriesRequest } from "../api/CategoriesAPI";
 import { GetWalletsRequest } from "../api/WalletAPI";
 
 import { GetPocketsRequest } from "../api/PocketAPI";

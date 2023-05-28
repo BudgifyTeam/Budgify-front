@@ -6,4 +6,10 @@
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 200;
+  width: 100%;
+}
+
+#profilePanel{
+  display: flex;
+  flex-direction: column;
 }
