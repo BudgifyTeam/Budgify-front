@@ -9,7 +9,10 @@ import { Header, Footer } from "../components/AppComponents";
 import "./Income.css";
 import { GetWalletsRequest } from "../api/DashboardAPI";
 import { MakeIncomeRequest } from "../api/IncomeAPI";
-import { ErrorNotificationPopup, ValidTransactionPopup } from "../components/Popups";
+import {
+  ErrorNotificationPopup,
+  ValidTransactionPopup,
+} from "../components/Popups";
 
 export default function Income() {
   const [errorPopup, setErrorPopup] = useState(false);
@@ -61,21 +64,19 @@ export default function Income() {
     console.log(walletId);
     console.log(inputValue);
     console.log(selectedDate);
-    if (inputValue != null) {
-      MakeIncomeRequest(walletId, inputValue, selectedDate)
-        .then((responseData) => {
-          console.log(responseData.code);
-          if (responseData.code) {
-            console.log("shi");
-            setValidPopup(true);
-          } else {
-            setErrorPopup(true);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
+    MakeIncomeRequest(walletId, inputValue, selectedDate)
+      .then((responseData) => {
+        console.log(responseData.code);
+        if (responseData.code) {
+          console.log("shi");
+          setValidPopup(true);
+        } else {
+          setErrorPopup(true);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (

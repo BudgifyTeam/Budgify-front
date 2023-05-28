@@ -24,7 +24,7 @@ export function Header(props) {
         alt="Descripción de la imagen"
         onClick={handleImageClick}
       />
-      <h2>{props.title}</h2>
+      <h2 id="headerTitle">{props.title}</h2>
       <span className="numero">${budgetValue}</span>
       {isMenuOpen && (
         <div className="menu">

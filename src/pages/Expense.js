@@ -11,8 +11,10 @@ import {
 import {
   GetWalletsRequest,
   GetCategoriesRequest,
-  GetPocketsRequest,
+  
 } from "../api/DashboardAPI";
+
+import { GetPocketsRequest } from "../api/PocketAPI";
 import { MakeExpenseRequest } from "../api/ExpenseAPI";
 import "./Expense.css";
 import { ErrorNotificationPopup, ValidTransactionPopup } from "../components/Popups";

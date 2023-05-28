@@ -82,7 +82,7 @@ export function PocketSelector(props) {
       >
         {props.pockets.map((pocket, index) => (
           <option key={index} value={pocket}>
-            {pocket}
+            {pocket==="default"?"Selecciona un pocket...":pocket}
           </option>
         ))}
       </select>
