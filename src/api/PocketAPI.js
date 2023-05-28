@@ -98,3 +98,37 @@ export async function CreatePocketsRequest(name, icon, goal) {
     };
   }
 }
+
+export async function DeletePocketsRequest(pocket_id, new_pocket_id) {
+    if (pocket_id.length !== 0 && new_pocket_id.length !== 0) {
+      const url = new URL(url_back + "Pocket/DeletePocket");
+      const queryParams = new URLSearchParams();
+      queryParams.append("pocketid", pocket_id);
+      queryParams.append("newPocket", new_pocket_id);
+      url.search = queryParams.toString();
+      try {
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            Accept: "text/plain",
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error(
+            "Error en la solicitud. Código de respuesta: " + response.status
+          );
+        }
+        const responseData = await response.json();
+        return responseData;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    } else {
+      return {
+        message: "El Valor es nulo o cero",
+        code: false,
+      };
+    }
+  }

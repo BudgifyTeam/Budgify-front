@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Popups.css";
 import { useNavigate } from "react-router-dom";
 import { OnlyPocketSelector } from "./IncomeAndExpenseComponents";
-import { GetPocketsRequest } from "../api/PocketAPI";
+import { DeletePocketsRequest, GetPocketsRequest } from "../api/PocketAPI";
 export function Popup(props) {
   return props.trigger ? (
     <div className="popup">
@@ -43,6 +43,8 @@ export function DeleteWalletPopup(props) {
 }
 
 export function DeletePocketPopup(props) {
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [validPopup, setValidPopup] = useState(false);
   const [pockets, setPockets] = useState([]);
   const [pocketsArray, setPocketsArray] = useState([]);
   const [selectedPocket, setSelectedPocket] = useState(null);
@@ -66,6 +68,20 @@ export function DeletePocketPopup(props) {
   }
 
   const handleClick = () => {
+    DeletePocketsRequest(
+      getPocketIdByName(pocketsArray, props.pocket),
+      getPocketIdByName(pocketsArray, selectedPocket)
+    )
+      .then((responseData) => {
+        if (responseData.code) {
+          setValidPopup(true);
+        } else {
+          setErrorPopup(true);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     console.log(getPocketIdByName(pocketsArray, selectedPocket));
   };
   return props.trigger ? (
@@ -91,6 +107,16 @@ export function DeletePocketPopup(props) {
             No
           </button>
         </div>
+        <ErrorNotificationPopup
+          trigger={errorPopup}
+          setTrigger={setErrorPopup}
+          error={"No se creo el pocket, valida la informacion"}
+        />
+        <ValidTransactionPopup
+          trigger={validPopup}
+          setTrigger={setValidPopup}
+          message={"Se creo el pocket correctamente"}
+        />
       </div>
     </div>
   ) : (
