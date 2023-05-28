@@ -3,6 +3,8 @@ import "./Popups.css";
 import { useNavigate } from "react-router-dom";
 import { OnlyPocketSelector } from "./IncomeAndExpenseComponents";
 import { DeletePocketsRequest, GetPocketsRequest } from "../api/PocketAPI";
+import { GetWalletsRequest } from "../api/WalletAPI";
+import { DeleteWalletRequest } from "../api/WalletAPI";
 export function Popup(props) {
   return props.trigger ? (
     <div className="popup">
@@ -11,30 +13,6 @@ export function Popup(props) {
           X
         </button>
         {props.children}
-      </div>
-    </div>
-  ) : (
-    ""
-  );
-}
-
-export function DeleteWalletPopup(props) {
-  return props.trigger ? (
-    <div className="popup">
-      <div className="popup-inner">
-        <button className="close-btn" onClick={() => props.setTrigger(false)}>
-          X
-        </button>
-        <h1 className="popup-title">Eliminar</h1>
-        <p className="popup-text">
-          Estas seguro de Eliminar tu billetera {props.walletName}
-        </p>
-        <div id="deleteButtons">
-          <button id="yesButton">Sí</button>
-          <button id="noButton" onClick={() => props.setTrigger(false)}>
-            No
-          </button>
-        </div>
       </div>
     </div>
   ) : (
@@ -127,6 +105,93 @@ export function DeletePocketPopup(props) {
 function getPocketIdByName(pockets, name) {
   const pocket = pockets.find((pocket) => pocket.name === name);
   return pocket ? pocket.pocket_id : null;
+}
+
+export function DeleteWalletPopup(props) {
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [validPopup, setValidPopup] = useState(false);
+  const [wallets, setWallets] = useState([]);
+  const [walletsArray, setPocketsArray] = useState([]);
+  const [selectedWallet, setSelectedWallet] = useState(null);
+  const handleWalletChange = (selectedValue) => {
+    setSelectedWallet(selectedValue);
+  };
+  useEffect(() => {
+    GetWalletsRequest()
+      .then((responseData) => {
+        setPocketsArray(responseData.data);
+        setWallets(responseData.data.map((obj) => obj.name));
+        console.log(responseData.data.map((obj) => obj.name)[0]);
+        setSelectedWallet(responseData.data.map((obj) => obj.name)[0]);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  if (wallets === null) {
+    return <div>Cargando Wallets</div>;
+  }
+
+  const handleClick = () => {
+    DeleteWalletRequest(
+      getWalletIdByName(walletsArray, props.walletName),
+      getWalletIdByName(walletsArray, selectedWallet)
+    )
+      .then((responseData) => {
+        if (responseData.code) {
+          setValidPopup(true);
+        } else {
+          setErrorPopup(true);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    console.log(getWalletIdByName(walletsArray, selectedWallet));
+  };
+  return props.trigger ? (
+    <div className="popup">
+      <div className="popup-inner">
+        <button className="close-btn" onClick={() => props.setTrigger(false)}>
+          X
+        </button>
+        <h1 className="popup-title">Eliminar</h1>
+        <p className="popup-text">
+          Estas seguro de Eliminar tu bolsillo {props.walletName}
+        </p>
+        <OnlyPocketSelector
+          onWalletChange={handleWalletChange}
+          pockets={wallets}
+          pocket={props.walletName}
+        />
+        <div id="deleteButtons">
+          <button id="yesButton" onClick={handleClick}>
+            Sí
+          </button>
+          <button id="noButton" onClick={() => props.setTrigger(false)}>
+            No
+          </button>
+        </div>
+        <ErrorNotificationPopup
+          trigger={errorPopup}
+          setTrigger={setErrorPopup}
+          error={"No se creo el pocket, valida la informacion"}
+        />
+        <ValidTransactionPopup
+          trigger={validPopup}
+          setTrigger={setValidPopup}
+          message={"Se creo el pocket correctamente"}
+        />
+      </div>
+    </div>
+  ) : (
+    ""
+  );
+}
+
+function getWalletIdByName(wallets, name) {
+  const wallet = wallets.find((wallet) => wallet.name === name);
+  return wallet ? wallet.wallet_id : null;
 }
 
 export function ErrorNotificationPopup(props) {
