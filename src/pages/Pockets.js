@@ -29,7 +29,9 @@ function Pockets() {
           <h1>Cargando</h1>
         ) : (
           pockets.map((pocket, index) => (
-            <PocketButton value={pocket} index={index} key={index} />
+            pocket.name === "default" ? null : (
+              <PocketButton value={pocket} index={index} key={index} />
+            )
           ))
         )}
         <AddPocketButton/>
