@@ -67,6 +67,30 @@ export function WalletSelector(props) {
   );
 }
 
+export function OnlyPocketSelector(props) {
+  const handleWalletChange = (event) => {
+    props.onWalletChange(event.target.value);
+    console.log(event.target.value);
+  };
+  return (
+    <>
+      <select
+        id="pocketSelector"
+        className="form-select"
+        onChange={handleWalletChange}
+      >
+        {props.pockets.map((pocket, index) => (
+          pocket === props.pocket ? null : (
+            <option key={index} value={pocket}>
+              {pocket === "default" ? "Selecciona un pocket..." : pocket}
+            </option>
+          )
+        ))}
+      </select>
+    </>
+  );
+}
+
 export function PocketSelector(props) {
   const handleWalletChange = (event) => {
     props.onWalletChange(event.target.value);

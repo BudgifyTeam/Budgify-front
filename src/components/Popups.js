@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Popups.css";
 import { useNavigate } from "react-router-dom";
+import { OnlyPocketSelector } from "./IncomeAndExpenseComponents";
+import { GetPocketsRequest } from "../api/PocketAPI";
 export function Popup(props) {
   return props.trigger ? (
     <div className="popup">
@@ -41,6 +43,31 @@ export function DeleteWalletPopup(props) {
 }
 
 export function DeletePocketPopup(props) {
+  const [pockets, setPockets] = useState([]);
+  const [pocketsArray, setPocketsArray] = useState([]);
+  const [selectedPocket, setSelectedPocket] = useState(null);
+  const handleWalletChange = (selectedValue) => {
+    setSelectedPocket(selectedValue);
+  };
+  useEffect(() => {
+    GetPocketsRequest()
+      .then((responseData) => {
+        setPocketsArray(responseData.data);
+        setPockets(responseData.data.map((obj) => obj.name));
+        console.log(responseData.data.map((obj) => obj.name)[0]);
+        setSelectedPocket(responseData.data.map((obj) => obj.name)[0]);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  if (pockets === null) {
+    return <div>Cargando Pockets</div>;
+  }
+
+  const handleClick = () => {
+    console.log(getPocketIdByName(pocketsArray, selectedPocket));
+  };
   return props.trigger ? (
     <div className="popup">
       <div className="popup-inner">
@@ -51,8 +78,15 @@ export function DeletePocketPopup(props) {
         <p className="popup-text">
           Estas seguro de Eliminar tu bolsillo {props.walletName}
         </p>
+        <OnlyPocketSelector
+          onWalletChange={handleWalletChange}
+          pockets={pockets}
+          pocket={props.pocket}
+        />
         <div id="deleteButtons">
-          <button id="yesButton">Sí</button>
+          <button id="yesButton" onClick={handleClick}>
+            Sí
+          </button>
           <button id="noButton" onClick={() => props.setTrigger(false)}>
             No
           </button>
@@ -62,6 +96,11 @@ export function DeletePocketPopup(props) {
   ) : (
     ""
   );
+}
+
+function getPocketIdByName(pockets, name) {
+  const pocket = pockets.find((pocket) => pocket.name === name);
+  return pocket ? pocket.pocket_id : null;
 }
 
 export function ErrorNotificationPopup(props) {

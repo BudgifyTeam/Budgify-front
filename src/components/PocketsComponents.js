@@ -59,6 +59,7 @@ function ModifyWalletButtons(props) {
       </div>
 
       <DeletePocketPopup
+        pocket={props.name}
         trigger={deleteConfirmPopup}
         setTrigger={setDeleteConfirmPopup}
         walletName={props.name}
