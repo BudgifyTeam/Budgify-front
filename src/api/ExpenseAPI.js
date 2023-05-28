@@ -9,17 +9,10 @@ export async function MakeExpenseRequest(
   console.log("EXPENSE");
   if (inputValue.length !== 0) {
     const baseUrl = url_back + "Expense/CreateExpense";
-    let date = new Date();
     var queryParams = new URLSearchParams({
       userid: parseInt(localStorage.getItem("userId")),
       value: parseFloat(inputValue),
-      date:
-        selectedDate +
-        "T" +
-        date.getHours().toString().padStart(2, "0") +
-        ":" +
-        date.getMinutes().toString().padStart(2, "0") +
-        ":00Z",
+      date: selectedDate + "T00:00:00Z",
       wallet_id: walletId,
       pocket_id: pocket_id,
       category_id: category_id,
@@ -49,10 +42,10 @@ export async function MakeExpenseRequest(
       console.error(error);
       throw error;
     }
-  }else{
+  } else {
     return {
       message: "El Valor es nulo o cero",
-      code: false
+      code: false,
     };
   }
 }

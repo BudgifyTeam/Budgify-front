@@ -3,17 +3,10 @@ import url_back from "./config";
 export async function MakeIncomeRequest(walletId, inputValue, selectedDate) {
   if (inputValue.length !== 0) {
     const baseUrl = url_back + "Income/CreateIncome";
-    let date = new Date();
     var queryParams = new URLSearchParams({
       userid: parseInt(localStorage.getItem("userId")),
       value: parseFloat(inputValue),
-      date:
-        selectedDate +
-        "T" +
-        date.getHours().toString().padStart(2, "0") +
-        ":" +
-        date.getMinutes().toString().padStart(2, "0") +
-        ":00Z",
+      date: selectedDate + "T00:00:00Z",
       wallet_id: parseInt(walletId),
     });
     const url = `${baseUrl}?${queryParams.toString()}`;
@@ -23,7 +16,7 @@ export async function MakeIncomeRequest(walletId, inputValue, selectedDate) {
         method: "POST",
         headers: {
           Accept: "text/plain",
-        }, 
+        },
       });
 
       if (!response.ok) {
@@ -42,10 +35,10 @@ export async function MakeIncomeRequest(walletId, inputValue, selectedDate) {
       console.error(error);
       throw error;
     }
-  }else{
+  } else {
     return {
       message: "El Valor es nulo o cero",
-      code: false
+      code: false,
     };
   }
 }

@@ -1,0 +1,38 @@
+#HistoryContainer {
+  padding-left: 4%;
+  padding-right: 4%;
+  display: flex;
+  flex-direction: column;
+}
+#findParmsContainer {
+  text-align: center;
+}
+#findButton {
+  border: 0;
+  background-color: white;
+}
+#findImage {
+  width: 32px;
+}
+
+#timeSelector {
+  padding-left: 15px;
+  padding-right: 15px;
+  border: solid 1px gray;
+  font-family: "Gemunu Libre", sans-serif;
+  font-size: 20px;
+  border-radius: 30px;
+  height: 40px;
+  width: 140px;
+}
+
+#date-btn {
+  padding-top: 10px;
+}
+
+.Movments-History {
+  padding-left: 1%;
+  padding-right: 1%;
+  height: 69vh;
+  overflow-y: auto;
+}

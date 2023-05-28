@@ -29,7 +29,7 @@ function Login() {
     validUsername = !setUsernamePattern.test(username) ? false : true;
     let validPassword = true;
     const passwordPattern =
-      /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+      /^[a-zA-Z0-9!@#$%^&._*]{8,16}$/;
     validPassword = !passwordPattern.test(password) ? false : true;
 
     if (validUsername && validPassword) {
