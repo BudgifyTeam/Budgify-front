@@ -19,7 +19,7 @@ export function WalletButton(props) {
         <h2 id="WalletInfo" className="walletName">{name}</h2>
         <h2 id="valuesData">${total}</h2>
       </button>
-      {isClicked && <ModifyWalletButtons name={name}/>}
+      {isClicked && <ModifyWalletButtons name={name} pocket={props.value}/>}
     </>
   );
 }
@@ -35,10 +35,8 @@ function ModifyWalletButtons(props) {
         />
       </button>
       <DeleteWalletPopup trigger={deleteConfirmPopup} setTrigger={setDeleteConfirmPopup} walletName={props.name}/>
-      <Link to={{
-        pathname: "/dashboard/wallets/edit",
-        state: { walletName: props.name }
-      }}>
+      <Link to={"/dashboard/wallets/edit"} state={{ walletName: props.name, pocket: props.pocket}}
+      >
         <button id="optionButtonRigth">
           <img
             src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/Edit.png?alt=media&token=8c1d1707-2325-45de-ad06-e45a10e750be"

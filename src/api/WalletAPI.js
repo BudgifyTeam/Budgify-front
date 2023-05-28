@@ -91,6 +91,45 @@ export async function GetWalletsRequest() {
       };
     }
   }
+
+  export async function EditWalletRequest(total, icon, name, Wallet) {
+    if (total.length !== 0) {
+      const url = new URL(url_back + "Wallet/Modifywallet");
+      const queryParams = new URLSearchParams();
+      queryParams.append("total", total);
+      queryParams.append("icon", icon);
+      queryParams.append("name", name);
+      url.search = queryParams.toString();
+  
+      try {
+        const response = await fetch(url, {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(Wallet),
+        });
+  
+        if (!response.ok) {
+          throw new Error(
+            "Error en la solicitud. Código de respuesta: " + response.status
+          );
+        }
+  
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    } else {
+      return {
+        message: "El Valor es nulo o cero",
+        code: false,
+      };
+    }
+  }
   export async function CreatePocketsRequest(name, icon, goal) {
     
   }
