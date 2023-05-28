@@ -32,6 +32,28 @@
   padding-bottom: 7px;
 }
 
+#formPasswordInput{
+  border: solid #aaaaaa 0.5px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 5%;
+  width: 80%;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+#showPassButton{
+  background-color: white;
+  border: 0px;
+  width: 10%;
+}
+#eyeImage{
+  width: 100%;
+}
+
 #RegisterTitle {
   margin: 30px;
   text-align: center;
