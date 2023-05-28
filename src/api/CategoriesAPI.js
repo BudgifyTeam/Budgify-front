@@ -62,3 +62,37 @@ export async function EditPocketsRequest(category_id, name) {
     };
   }
 }
+
+export async function DeleteCategoryRequest(categoryid, newCategoryId) {
+  if (categoryid.length !== 0 && newCategoryId.length !== 0) {
+    const url = new URL(url_back + "Category/DeleteCategory");
+    const queryParams = new URLSearchParams();
+    queryParams.append("categoryid", categoryid);
+    queryParams.append("newCategoryId", newCategoryId);
+    url.search = queryParams.toString();
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Accept: "text/plain",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          "Error en la solicitud. Código de respuesta: " + response.status
+        );
+      }
+      const responseData = await response.json();
+      return responseData;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  } else {
+    return {
+      message: "El Valor es nulo o cero",
+      code: false,
+    };
+  }
+}

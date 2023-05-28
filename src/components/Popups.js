@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./Popups.css";
 import { useNavigate } from "react-router-dom";
-import { OnlyPocketSelector } from "./IncomeAndExpenseComponents";
+import {
+  OnlyCategorySelector,
+  OnlyPocketSelector,
+} from "./IncomeAndExpenseComponents";
 import { DeletePocketsRequest, GetPocketsRequest } from "../api/PocketAPI";
 import { GetWalletsRequest } from "../api/WalletAPI";
 import { DeleteWalletRequest } from "../api/WalletAPI";
+import { GetCategoriesRequest } from "../api/CategoriesAPI";
+import { DeleteCategoryRequest } from "../api/CategoriesAPI";
 export function Popup(props) {
   return props.trigger ? (
     <div className="popup">
@@ -228,6 +233,92 @@ export function ValidTransactionPopup(props) {
         >
           Volver al inicio
         </button>
+      </div>
+    </div>
+  ) : (
+    ""
+  );
+}
+
+function getCategoryIdByName(categories, name) {
+  const category = categories.find((category) => category.name === name);
+  return category ? category.category_id : null;
+}
+
+export function DeleteCategoryPopup(props) {
+  const [errorPopup, setErrorPopup] = useState(false);
+  const [validPopup, setValidPopup] = useState(false);
+  const [categories, setPockets] = useState([]);
+  const [categoriesArray, setCategoriesArray] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const handleWalletChange = (selectedValue) => {
+    setSelectedCategory(selectedValue);
+  };
+  useEffect(() => {
+    GetCategoriesRequest()
+      .then((responseData) => {
+        setCategoriesArray(responseData.data);
+        setPockets(responseData.data.map((obj) => obj.name));
+        console.log(responseData.data.map((obj) => obj.name)[0]);
+        setSelectedCategory(responseData.data.map((obj) => obj.name)[0]);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  if (categories === null) {
+    return <div>Cargando Categorias</div>;
+  }
+
+  const handleClick = () => {
+    DeleteCategoryRequest(
+      getCategoryIdByName(categoriesArray, props.categoryName),
+      getCategoryIdByName(categoriesArray, selectedCategory)
+    )
+      .then((responseData) => {
+        if (responseData.code) {
+          setValidPopup(true);
+        } else {
+          setErrorPopup(true);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  return props.trigger ? (
+    <div className="popup">
+      <div className="popup-inner">
+        <button className="close-btn" onClick={() => props.setTrigger(false)}>
+          X
+        </button>
+        <h1 className="popup-title">Eliminar</h1>
+        <p className="popup-text">
+          Estas seguro de Eliminar tu categoria {props.categoryName}
+        </p>
+        <OnlyCategorySelector
+          onWalletChange={handleWalletChange}
+          categories={categories}
+          categoryName={props.categoryName}
+        />
+        <div id="deleteButtons">
+          <button id="yesButton" onClick={handleClick}>
+            Sí
+          </button>
+          <button id="noButton" onClick={() => props.setTrigger(false)}>
+            No
+          </button>
+        </div>
+        <ErrorNotificationPopup
+          trigger={errorPopup}
+          setTrigger={setErrorPopup}
+          error={"No se creo el pocket, valida la informacion"}
+        />
+        <ValidTransactionPopup
+          trigger={validPopup}
+          setTrigger={setValidPopup}
+          message={"Se creo el pocket correctamente"}
+        />
       </div>
     </div>
   ) : (
