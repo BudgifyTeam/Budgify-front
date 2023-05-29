@@ -1,8 +1,13 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import { FormatIntegerWithDecimals } from "../utils/stringUtils";
 import "./AppComponents.css";
 import { Link } from "react-router-dom";
 import LogoutButton from "./LogOutButton";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
+import { GetWalletsRequest } from "../api/WalletAPI";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export function Header(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,7 +39,6 @@ export function Header(props) {
     </header>
   );
 }
-
 
 export function BudgetValue(props) {
   const [budgetValue] = useState(() => {
@@ -69,11 +73,60 @@ export function BudgetValue(props) {
 }
 
 export function WeekReview() {
+  const [labels, setLabels] = useState([]);
+  const [values, setValues] = useState([]);
+  useEffect(() => {
+    GetWalletsRequest()
+      .then((responseData) => {
+        console.log(responseData.data);
+        var names = [];
+        var totals = [];
+        names = responseData.data.map(function (wallet) {
+          return wallet.name;
+        });
+        setLabels(names);
+        totals = responseData.data.map(function (wallet) {
+          return wallet.total;
+        });
+        setValues(totals);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Total en billetera",
+        data: values,
+        backgroundColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
   return (
     <div className="weekReviewContainer">
       <h3 id="weekReviewTitle">Week Review</h3>
       <hr />
-      Insertar la grafica
+      <div className="GraphContainer">
+        <Doughnut data={data} />
+      </div>
     </div>
   );
 }

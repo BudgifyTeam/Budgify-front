@@ -1,0 +1,4 @@
+.dashboardBody{
+    height: calc(100vh - 240px);
+    overflow-y: auto;
+}

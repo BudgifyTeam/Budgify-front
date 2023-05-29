@@ -6,6 +6,7 @@ import {
   WeekReview,
   OperationMenu,
 } from "../components/AppComponents";
+import "./Dashboard.css"
 
 function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +33,7 @@ function Dashboard() {
   return (
     <div>
       <Header title="Budgify" />
-      <div>
+      <div className="dashboardBody">
         <BudgetValue />
         <WeekReview />
       </div>
