@@ -11,6 +11,7 @@ function Account() {
     setSelectedIcon(buttonName); // Actualizar el estado 'selectedButton' con el botón seleccionado
   };
   const handleDeleteAccount = () => {
+    console.log(SelectedIcon);
     console.log(localStorage.getItem("userId"));
     deleteAccountRequest()
       .then((responseData) => {
