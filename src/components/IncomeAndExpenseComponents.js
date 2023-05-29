@@ -72,7 +72,7 @@ export function WalletSelector(props) {
   const [selectedWallet, setSelectedWallet] = useState(props.wallets[0]);
   const handleWalletChange = (event) => {
     setSelectedWallet(event.target.value);
-    props.onWalletChange(selectedWallet);
+    props.onWalletChange(event.target.value);
   };
 
   return (

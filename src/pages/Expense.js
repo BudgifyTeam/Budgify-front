@@ -137,7 +137,7 @@ export default function Expense() {
   //=================================================================================
 
   const handleButtonClick = () => {
-    setIsLoading(true);
+    console.log(selectedWallet);
     if (inputValue !== null) {
       MakeExpenseRequest(
         walletId,
@@ -199,6 +199,7 @@ export default function Expense() {
 }
 
 function getWalletIdByName(data, walletName) {
+  console.log(walletName);
   const wallet = data.data.find((wallet) => wallet.name === walletName);
   if (wallet) {
     return wallet.wallet_id;
