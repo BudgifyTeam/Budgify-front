@@ -69,8 +69,9 @@ export function OnlyCategorySelector(props) {
 }
 
 export function WalletSelector(props) {
+  const [selectedWallet, setSelectedWallet] = useState(props.wallets[0]);
   const handleWalletChange = (event) => {
-    const selectedWallet = event.target.value;
+    setSelectedWallet(event.target.value);
     props.onWalletChange(selectedWallet);
   };
 
@@ -84,11 +85,11 @@ export function WalletSelector(props) {
       >
         {props.wallets.map((wallet, index) => (
           <option key={index} value={wallet}>
-            {wallet}
+            {wallet.split('-')[0]}
           </option>
         ))}
       </select>
-      Balance: 0
+      Balance: {selectedWallet.split('-')[1]}
     </>
   );
 }
@@ -136,7 +137,6 @@ export function PocketSelector(props) {
           </option>
         ))}
       </select>
-      Balance: 0
     </>
   );
 }
@@ -238,6 +238,14 @@ export function OperationExpenseMenu(props) {
   return (
     <div id="incomeOrExpenseMenu">
       <OperationButton option="Add Expense" onClick={handleClick} />
+      <Link to="/dashboard/expense/history">
+        <button id="historyButton">
+          <img
+            alt=""
+            src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/MovHistory.png?alt=media&token=cd9db8c7-9f00-4e08-b645-fda1bdc35565"
+          />
+        </button>
+      </Link>
     </div>
   );
 }

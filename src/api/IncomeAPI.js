@@ -45,7 +45,10 @@ export async function MakeIncomeRequest(walletId, inputValue, selectedDate) {
 
 export async function GetIncomesRequest() {
   const url =
-    url_back + "Income/GetIncomes?userid=" + localStorage.getItem("userId")+"&range=all";
+    url_back +
+    "Income/GetIncomes?userid=" +
+    localStorage.getItem("userId") +
+    "&range=all";
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -68,8 +71,7 @@ export async function GetIncomesRequest() {
 }
 
 export async function DeleteIncomeRequest(incomeid) {
-  const url =
-    url_back + "Income/DeleteIncome?incomeid=" + incomeid;
+  const url = url_back + "Income/DeleteIncome?incomeid=" + incomeid;
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -84,6 +86,7 @@ export async function DeleteIncomeRequest(incomeid) {
       );
     }
     const data = await response.json();
+    localStorage.setItem("budgetValue", data.newBudget);
     return data;
   } catch (error) {
     console.error(error);

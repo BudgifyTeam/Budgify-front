@@ -49,3 +49,53 @@ export async function MakeExpenseRequest(
     };
   }
 }
+
+export async function GetExpensesRequest() {
+  const url =
+    url_back + "Expense/GetExpenses?userid=" + localStorage.getItem("userId")+"&range=all";
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        "Error en la solicitud. Código de respuesta: " + response.status
+      );
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+export async function DeleteExpenseRequest(expenseId) {
+  const url =
+    url_back + "Expense/DeleteExpense?expenseId=" + expenseId;
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        "Error en la solicitud. Código de respuesta: " + response.status
+      );
+    }
+    const data = await response.json();
+    
+    localStorage.setItem("budgetValue", data.newBudget);
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
