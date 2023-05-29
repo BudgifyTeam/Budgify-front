@@ -116,8 +116,8 @@ export async function GetWalletsRequest() {
             "Error en la solicitud. Código de respuesta: " + response.status
           );
         }
-  
         const data = await response.json();
+        localStorage.setItem("budgetValue", data.budget);
         return data;
       } catch (error) {
         console.error(error);

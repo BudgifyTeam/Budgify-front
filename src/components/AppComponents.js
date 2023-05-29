@@ -142,7 +142,7 @@ function NavBarButton(props) {
       break;
     case "history":
       path =
-        "https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/History.png?alt=media&token=82b842a3-d4a2-4725-9a8c-e45ac0be2591";
+        "https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/History.png?alt=media&token=b79c8b15-dce3-45bd-b0b1-2270369ae048";
       name = "History";
       break;
     case "stats":
