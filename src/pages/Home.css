@@ -6,15 +6,13 @@
   background-size: cover;
   overflow: hidden;
   flex-direction: column;
-
-  height: 65%;
 }
 #homeHeader {
   margin-bottom: 4px;
   margin-top: 7px;
   position: relative;
   width: 100%;
-  height: 50px;
+  height: 80px;
   display: flex;
   align-items: center;
 }
@@ -22,7 +20,7 @@
 .header-left {
   width: 80%;
   padding-left: 10%;
-  padding-top: 4%;
+  padding-top: 10px;
   display: flex;
   align-items: center;
 }
@@ -30,7 +28,7 @@
 .header-right {
   width: 20%;
   padding-right: 10%;
-  padding-top: 4%;
+  padding-top: 10px;
   text-align: right;
   color: #fff;
   border: none;
@@ -56,12 +54,20 @@
 }
 
 #homeBody {
-  margin: 5%;
+  margin: 10px;
+  height: 100vh;
 }
 #homeImage {
-  margin: 5%;
+  margin-left: 5%;
   width: 90%;
   margin-bottom: 30px;
+}
+
+@media (min-width: 400px) {
+  #homeImage {
+    margin-left: 20%;
+    width: 60%;
+  }
 }
 
 #headerText {
@@ -84,12 +90,11 @@
 
 .homeFooter {
   border-bottom: wheat 2px solid;
-  position: fixed;
+  width: 100%;
   padding-top: 20px;
-  bottom: 0;
   background-color: #000;
   flex-shrink: 2;
-  height: 35%;
+  height: 300px;
   /*background-image: url("https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/footer.png?alt=media&token=cac789ec-2686-4224-b8c8-f16aca47c247");
   background-size: cover;
   background-position: center;*/

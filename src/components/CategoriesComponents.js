@@ -28,6 +28,17 @@ export default function CategoryComponent(props) {
   );
 }
 
+
+/**
+ * The EditCategoryButton function is a component that renders an edit button.
+ * 
+ *
+ * @param props Pass data from the parent component to the child component
+ *
+ * @return A button
+ *
+ * @docauthor Leonardo
+ */
 function EditCategoryButton(props) {
   return (
     <button id="editCategoryButton" onClick={props.onClick}>
@@ -38,6 +49,19 @@ function EditCategoryButton(props) {
     </button>
   );
 }
+
+/**
+ * The DeleteCategoryButton function is a component that renders a button which, when clicked,
+ * triggers the DeleteCategoryPopup component. The DeleteCategoryButton function takes in one prop:
+ * categoryName (string). This prop is passed to the DeleteCategoryPopup component as well.
+ 
+ *
+ * @param props Pass data from the parent component to the child component
+ *
+ * @return A button and a deletecategorypopup component
+ *
+ * @docauthor Leonardo
+ */
 function DeleteCategoryButton(props) {
   const [showDeletePopUp, setShowDeletePopUp] = useState(false);
   return (
@@ -57,6 +81,17 @@ function DeleteCategoryButton(props) {
   );
 }
 
+
+/**
+ * The RenameCategory function is a component that allows the user to rename an existing category.
+ * 
+ *
+ * @param props Pass data from the parent component to the child component
+ *
+ * @return A div with a button and an input
+ *
+ * @docauthor Leonardo
+ */
 function RenameCategory(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
@@ -109,7 +144,18 @@ function RenameCategory(props) {
   );
 }
 
-export function AddCategoryButton() {
+export 
+/**
+ * The AddCategoryButton function is a React component that renders a button with the &quot;+&quot; symbol.
+ * When clicked, it triggers the CreateCategoryPopup component to render.
+ 
+ *
+ *
+ * @return A button and a createcategorypopup component
+ *
+ * @docauthor Leonardo
+ */
+function AddCategoryButton() {
   const [addCategoryPopUp, setAddCategoryPopUp] = useState(false);
   return (
     <>

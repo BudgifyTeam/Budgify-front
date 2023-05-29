@@ -8,7 +8,7 @@ function App() {
       <div id="homeHeader">
         <div className="header-left">
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/logo.jpg?alt=media&token=4c0cc5e3-a0b1-420b-a8c6-5307ab19ba14"
+            src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/LogoApp.png?alt=media&token=8a20bda2-e83e-47fb-8d23-bc0288957307"
             alt=""
             id="logo"
           />
