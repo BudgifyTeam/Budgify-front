@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import WalletImages from "../utils/Wallets";
+import { PocketsImages } from "../utils/Wallets";
 import { Header, Footer } from "../components/AppComponents";
 import { CreatePocketsRequest } from "../api/PocketAPI";
 import { ErrorNotificationPopup, ValidTransactionPopup } from "../components/Popups";
@@ -83,8 +83,8 @@ const ButtonTable = (props) => {
 
   // Agrupar los elementos en filas de 6
   const rows = [];
-  for (let i = 0; i < WalletImages.length; i += 6) {
-    const rowItems = WalletImages.slice(i, i + 6);
+  for (let i = 0; i < PocketsImages.length; i += 6) {
+    const rowItems = PocketsImages.slice(i, i + 6);
     rows.push(rowItems);
   }
 

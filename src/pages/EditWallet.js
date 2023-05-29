@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Header, Footer } from "../components/AppComponents";
 import { useLocation } from "react-router-dom";
-import WalletImages from "../utils/Wallets";
+import { WalletImages } from "../utils/Wallets";
 import "./EditWallet.css";
 import { EditWalletRequest } from "../api/WalletAPI";
 import { ErrorNotificationPopup, ValidTransactionPopup, LoadingPopup } from "../components/Popups";

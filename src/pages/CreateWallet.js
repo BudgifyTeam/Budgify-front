@@ -1,6 +1,6 @@
 import React, {useState}from 'react'
 import { Header, Footer } from '../components/AppComponents'
-import WalletImages from '../utils/Wallets';
+import { WalletImages } from '../utils/Wallets';
 import { CreateWalletRequest } from '../api/WalletAPI';
 import { ErrorNotificationPopup, ValidTransactionPopup } from '../components/Popups';
 
