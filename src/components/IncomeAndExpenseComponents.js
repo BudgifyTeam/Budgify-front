@@ -45,8 +45,7 @@ export function CategorySelector(props) {
 
 export function OnlyCategorySelector(props) {
   const handleCategoryChange = (event) => {
-    const selectedCategory = event.target.value;
-    props.onWalletChange(selectedCategory);
+    props.onWalletChange(event.target.value);
   };
   console.log(props.categories);
   return (
@@ -97,7 +96,6 @@ export function WalletSelector(props) {
 export function OnlyPocketSelector(props) {
   const handleWalletChange = (event) => {
     props.onWalletChange(event.target.value);
-    console.log(event.target.value);
   };
   return (
     <>
@@ -121,7 +119,6 @@ export function OnlyPocketSelector(props) {
 export function PocketSelector(props) {
   const handleWalletChange = (event) => {
     props.onWalletChange(event.target.value);
-    console.log(event.target.value);
   };
   return (
     <>
