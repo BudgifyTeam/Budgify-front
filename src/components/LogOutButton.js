@@ -13,15 +13,27 @@ function LogoutButton() {
   }
 
   return (
-    <div id="profilePanel">
-      <Link to="/Login">
-        <button onClick={logoutSubmit} id="logoutButton">
-          Log Out
-        </button>
-      </Link>
-      <Link to="/Categories">
-        <button id="logoutButton">Categorias</button>
-      </Link>
+    <div className="popup">
+      <div className="popup-inner">
+        <div className="buttonsContainer">
+        <Link to="/Account">
+            <button onClick={logoutSubmit} id="logoutButton">
+              Cuenta
+            </button>
+          </Link>
+          <hr />
+          <Link to="/Categories">
+            <button id="logoutButton">Categorias</button>
+          </Link>
+          <hr />
+          <Link to="/Login">
+            <button onClick={logoutSubmit} id="logoutButton">
+              Log Out
+            </button>
+          </Link>
+          
+        </div>
+      </div>
     </div>
   );
 }
