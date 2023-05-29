@@ -57,7 +57,7 @@ function ExpenseButton(props) {
             <br />
             {date[0]}
           </span>
-          <h2>+${FormatIntegerWithDecimals(props.value.value)}</h2>
+          <h2>-${FormatIntegerWithDecimals(props.value.value)}</h2>
         </button>
         {showOptions && <ExpenseMovmentPanel expenseId={props.value.expense_id} />}
       </>

@@ -137,8 +137,8 @@ export default function Expense() {
   //=================================================================================
 
   const handleButtonClick = () => {
-    console.log(selectedWallet);
-    if (inputValue !== null) {
+    console.log(selectedWallet.split('-')[1]);
+    if (inputValue !== null && selectedWallet.split('-')[1] >= inputValue) {
       MakeExpenseRequest(
         walletId,
         inputValue,
@@ -158,6 +158,9 @@ export default function Expense() {
         .catch((error) => {
           console.error(error);
         });
+    } else{
+      setErrorPopup(true);
+      setIsLoading(false);
     }
   };
 
@@ -185,7 +188,7 @@ export default function Expense() {
         <ErrorNotificationPopup
           trigger={errorPopup}
           setTrigger={setErrorPopup}
-          error="No se realizó el gasto, verifica la información"
+          error="No se realizó el gasto, verifica la información o el saldo de la wallet"
         />
         <ValidTransactionPopup
           trigger={validPopup}
@@ -197,6 +200,7 @@ export default function Expense() {
     </div>
   );
 }
+
 
 function getWalletIdByName(data, walletName) {
   const wallet = data.data.find((wallet) => wallet.name === walletName.split('-')[0]);
