@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./IncomeAndExpenseComponents.css";
+import { Link } from "react-router-dom";
 
 export function IAEValueInput(props) {
   const [inputValue, setInputValue] = useState("");
@@ -50,8 +51,11 @@ export function OnlyCategorySelector(props) {
   console.log(props.categories);
   return (
     <>
-      <select id="pocketSelector" className="form-select" 
-        onChange={handleCategoryChange}>
+      <select
+        id="pocketSelector"
+        className="form-select"
+        onChange={handleCategoryChange}
+      >
         {props.categories.map((category, index) =>
           category === props.categoryName ? null : (
             <option key={index} value={category}>
@@ -215,6 +219,14 @@ export function OperationIncomeMenu(props) {
   return (
     <div id="incomeOrExpenseMenu">
       <OperationButton option="Add Income" onClick={handleClick} />
+      <Link to="/dashboard/income/history">
+        <button id="historyButton">
+          <img
+            alt=""
+            src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/MovHistory.png?alt=media&token=cd9db8c7-9f00-4e08-b645-fda1bdc35565"
+          />
+        </button>
+      </Link>
     </div>
   );
 }

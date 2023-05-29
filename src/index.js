@@ -16,6 +16,7 @@ import CreateWallet from "./pages/CreateWallet";
 import EditPocket from "./pages/EditPocket";
 import CreatePocket from "./pages/CreatePocket";
 import Categories from "./pages/Categories";
+import IncomesHistory from "./pages/IncomesHistory";
 
 const root = ReactDom.createRoot(document.getElementById("root"));
 
@@ -27,6 +28,7 @@ root.render(
         <Route exact path="/categories" element={<Categories />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/dashboard/income" element={<Income/>} />
+        <Route exact path="/dashboard/income/history" element={<IncomesHistory/>} />
         <Route exact path="/dashboard/expense" element={<Expense/>} />
         <Route exact path="/dashboard/pockets" element={<Pockets />} />
         <Route exact path="/dashboard/pockets/edit" element={<EditPocket />} />

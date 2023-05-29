@@ -78,4 +78,9 @@ table{
   text-align: center;
 }
 
+#historyButton{
+  border: 0;
+  background-color: white;
+}
+
 

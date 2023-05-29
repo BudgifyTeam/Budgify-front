@@ -42,3 +42,51 @@ export async function MakeIncomeRequest(walletId, inputValue, selectedDate) {
     };
   }
 }
+
+export async function GetIncomesRequest() {
+  const url =
+    url_back + "Income/GetIncomes?userid=" + localStorage.getItem("userId")+"&range=all";
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        "Error en la solicitud. Código de respuesta: " + response.status
+      );
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+export async function DeleteIncomeRequest(incomeid) {
+  const url =
+    url_back + "Income/DeleteIncome?incomeid=" + incomeid;
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        "Error en la solicitud. Código de respuesta: " + response.status
+      );
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
