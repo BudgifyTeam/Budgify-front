@@ -33,11 +33,16 @@ export function CategorySelector(props) {
     <>
       <h2>Category</h2>
       <select id="categorySelector" className="form-select">
-        {props.categories.map((category, index) => (
-          <option key={index} value={category}>
-            {category}
-          </option>
-        ))}
+        {props.categories.map((category, index) => {
+          if (category === "ajustes") {
+            return null; // Omite la opción cuando la categoría sea "ajustes"
+          }
+          return (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          );
+        })}
       </select>
     </>
   );
@@ -55,13 +60,16 @@ export function OnlyCategorySelector(props) {
         className="form-select"
         onChange={handleCategoryChange}
       >
-        {props.categories.map((category, index) =>
-          category === props.categoryName ? null : (
+        {props.categories.map((category, index) => {
+          if (category === "ajustes" || category === props.categoryName) {
+            return null; // Omite la opción cuando la categoría sea "ajustes"
+          }
+          return (
             <option key={index} value={category}>
               {category}
             </option>
-          )
-        )}
+          );
+        })}
       </select>
     </>
   );
@@ -84,11 +92,11 @@ export function WalletSelector(props) {
       >
         {props.wallets.map((wallet, index) => (
           <option key={index} value={wallet}>
-            {wallet.split('-')[0]}
+            {wallet.split("-")[0]}
           </option>
         ))}
       </select>
-      Balance: {selectedWallet.split('-')[1]}
+      Balance: {selectedWallet.split("-")[1]}
     </>
   );
 }
