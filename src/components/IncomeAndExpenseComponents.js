@@ -28,11 +28,14 @@ export function IAEValueInput(props) {
 }
 
 export function CategorySelector(props) {
-  console.log(props.categories);
+  const handleWalletChange = (event) => {
+    props.onWalletChange(event.target.value);
+  };
   return (
     <>
       <h2>Category</h2>
-      <select id="categorySelector" className="form-select">
+      <select id="categorySelector" className="form-select" 
+        onChange={handleWalletChange}>
         {props.categories.map((category, index) => {
           if (category === "ajustes") {
             return null; // Omite la opción cuando la categoría sea "ajustes"

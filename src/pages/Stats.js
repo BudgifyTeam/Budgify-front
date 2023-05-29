@@ -9,12 +9,22 @@ import {
   Title,
   Tooltip,
   Legend,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
-import { GetHistoryRequest } from "../api/HistoryAPI";
+
+
+import { Bar, Radar } from "react-chartjs-2";
+import { GetHistoryRequest, GetCategoryStatsRequest } from "../api/HistoryAPI";
 import "./Stats.css";
 
 ChartJS.register(
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
   CategoryScale,
   LinearScale,
   BarElement,
@@ -23,23 +33,35 @@ ChartJS.register(
   Legend
 );
 
+
 function Stats() {
   const [labels, setlabels] = useState([]);
   const [values, setValues] = useState([]);
   const [colors, setColors] = useState([]);
+
+  
+  const [catagories, setCatagories] = useState([]);
+  const [totals, setTotals] = useState([]);
   useEffect(() => {
     const today = new Date();
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, "0");
     const day = String(today.getDate()).padStart(2, "0");
     const currentDate = `${year}-${month}-${day}`;
+    GetCategoryStatsRequest(currentDate)
+      .then((responseData) => {
+        setCatagories(responseData.stats.map((category) => category.name));
+        setTotals(responseData.stats.map((category) => category.total));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     GetHistoryRequest(currentDate, "Mes")
       .then((responseData) => {
         const types = responseData.history.items.map(
           (item) => item.type + ":" + FormatIntegerWithDecimals(item.value)
         );
         setlabels(types);
-        console.log(types);
         const values = responseData.history.items.map((item) => {
           if (item.name === "expense") {
             return -item.value; // Valor negativo si el name es "expense"
@@ -60,6 +82,31 @@ function Stats() {
         console.error(error);
       });
   }, []);
+
+  const Radardata = {
+    labels: catagories,
+    datasets: [
+      {
+        label: '# of Votes',
+        data: totals,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const Radaroptions={
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: false,
+      },
+    },
+  }
   const options = {
     responsive: true,
     plugins: {
@@ -103,7 +150,7 @@ function Stats() {
   return (
     <div className="dashboardContainer">
       <Header />
-      <div>
+      <div className="StatsContainer">
         <h3 id="weekReviewTitle">Revisión del mes</h3>
         <hr />
         <div className="WeekRevision">
@@ -111,6 +158,7 @@ function Stats() {
         </div>
         <br />
         <h3 id="weekReviewTitle">Revisión de categorias del mes</h3>
+        <Radar options={Radaroptions} data={Radardata} />
         <hr />
       </div>
       <Footer />
