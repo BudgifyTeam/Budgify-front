@@ -31,11 +31,13 @@ export default function Income() {
     setInputValue(value);
   };
   useEffect(() => {
+    console.log("Actualizacion");
     if (wallets !== null) {
       setWalletId(getWalletIdByName(wallets, selectedWallet));
     }
   }, [selectedWallet, wallets]);
   const handleWalletChange = (selectedValue) => {
+    console.log(selectedValue);
     setSelectedWallet(selectedValue);
   };
   useEffect(() => {
@@ -119,7 +121,7 @@ export default function Income() {
 }
 
 function getWalletIdByName(data, walletName) {
-  const wallet = data.data.find((wallet) => wallet.name === walletName);
+  const wallet = data.data.find((wallet) => wallet.name === walletName.split('-')[0]);
   if (wallet) {
     return wallet.wallet_id;
   }
