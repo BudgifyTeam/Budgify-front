@@ -34,6 +34,7 @@ function Pockets() {
             ></img>
           </div>
         ) : (
+      
           pockets.map((pocket, index) =>
             pocket.name === "default" ? null : (
               <PocketButton value={pocket} index={index} key={index} />
