@@ -31,9 +31,14 @@ function Categories() {
             ></img>
           </div>
         ) : (
-          categories.map((category, index) => (
-            <CategoryComponent value={category} index={index} key={index} />
-          ))
+          categories.map((category, index) => {
+            if (category.name === "ajustes") {
+              return null; // No renderizar cuando la categoría sea "ajustes"
+            }
+            return (
+              <CategoryComponent value={category} index={index} key={index} />
+            );
+          })
         )}
         {!isLoading && <AddCategoryButton />}
       </div>

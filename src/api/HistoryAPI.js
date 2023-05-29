@@ -1,6 +1,7 @@
 import url_back from "./config";
 
 export async function GetHistoryRequest(selectedDate, time) {
+  console.log(selectedDate);
   if (selectedDate.length !== 0) {
     let url = url_back + "History/Get";
     console.log(time);
