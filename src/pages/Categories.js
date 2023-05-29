@@ -13,6 +13,7 @@ function Categories() {
       .then((responseData) => {
         setCategories(responseData.data);
         setIsLoading(false);
+        
       })
       .catch((error) => {
         console.error(error);

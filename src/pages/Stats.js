@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Footer, Header } from "../components/AppComponents";
+import { FormatIntegerWithDecimals } from "../utils/stringUtils";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,6 +12,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { GetHistoryRequest } from "../api/HistoryAPI";
+import "./Stats.css";
 
 ChartJS.register(
   CategoryScale,
@@ -22,7 +24,9 @@ ChartJS.register(
 );
 
 function Stats() {
-  const [history, setHistory] = useState([]);
+  const [labels, setlabels] = useState([]);
+  const [values, setValues] = useState([]);
+  const [colors, setColors] = useState([]);
   useEffect(() => {
     const today = new Date();
     const year = today.getFullYear();
@@ -31,8 +35,26 @@ function Stats() {
     const currentDate = `${year}-${month}-${day}`;
     GetHistoryRequest(currentDate, "Mes")
       .then((responseData) => {
-        setHistory(responseData.history.items);
-        console.log(responseData.history.items);
+        const types = responseData.history.items.map(
+          (item) => item.type + ":" + FormatIntegerWithDecimals(item.value)
+        );
+        setlabels(types);
+        console.log(types);
+        const values = responseData.history.items.map((item) => {
+          if (item.name === "expense") {
+            return -item.value; // Valor negativo si el name es "expense"
+          }
+          return item.value;
+        });
+        setValues(values);
+        const backgroundColor = values.map((value) => {
+          if (value >= 0) {
+            return "rgba(155, 193, 141, 1)"; // Valor positivo
+          } else {
+            return "rgba(206, 112, 112, 1)"; // Valor negativo
+          }
+        });
+        setColors(backgroundColor);
       })
       .catch((error) => {
         console.error(error);
@@ -68,16 +90,12 @@ function Stats() {
   };
 
   const data = {
-    labels: ["categoria1", "categoria2", "categoria3"],
+    labels: labels,
     datasets: [
       {
         label: "Dataset 1",
-        data: [100, -200, 140],
-        backgroundColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 99, 132, 1)",
-        ],
+        data: values,
+        backgroundColor: colors,
       },
     ],
   };
@@ -88,7 +106,12 @@ function Stats() {
       <div>
         <h3 id="weekReviewTitle">Revisión del mes</h3>
         <hr />
-        <Bar options={options} data={data} />
+        <div className="WeekRevision">
+          <Bar options={options} data={data} />
+        </div>
+        <br />
+        <h3 id="weekReviewTitle">Revisión de categorias del mes</h3>
+        <hr />
       </div>
       <Footer />
     </div>
