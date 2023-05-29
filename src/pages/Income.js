@@ -13,8 +13,10 @@ import {
   ValidTransactionPopup,
 } from "../components/Popups";
 import { GetWalletsRequest } from "../api/WalletAPI";
+import { LoadingPopup } from "../components/Popups";
 
 export default function Income() {
+  const [isLoading, setIsLoading] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
   const [validPopup, setValidPopup] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -48,7 +50,15 @@ export default function Income() {
   }, []);
 
   if (wallets === null) {
-    return <div>Cargando Wallets</div>;
+    return (
+      <div className="popup">
+        <img
+          className="loadingGif"
+          src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/Loading.gif?alt=media&token=0d3075d1-5568-43d8-952d-0fb19567037c"
+          alt=""
+        ></img>
+      </div>
+    );
   } else {
     if (walletId === null) {
       setWalletId(wallets.data[0].wallet_id);
@@ -60,18 +70,17 @@ export default function Income() {
   };
 
   const handleButtonClick = () => {
-    console.log("Botón clickeado");
-    console.log(walletId);
-    console.log(inputValue);
-    console.log(selectedDate);
+    setIsLoading(true);
     MakeIncomeRequest(walletId, inputValue, selectedDate)
       .then((responseData) => {
         console.log(responseData.code);
         if (responseData.code) {
           console.log("shi");
           setValidPopup(true);
+          setIsLoading(false);
         } else {
           setErrorPopup(true);
+          setIsLoading(false);
         }
       })
       .catch((error) => {
@@ -82,6 +91,8 @@ export default function Income() {
   return (
     <div className="dashboardContainer">
       <Header title="Income " />
+
+      <LoadingPopup trigger={isLoading} setTrigger={setIsLoading} />
       <div className="IncomeContainer">
         <IAEValueInput onInputChange={handleInputChange} />
         <hr />

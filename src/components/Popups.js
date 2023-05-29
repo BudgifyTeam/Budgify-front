@@ -29,6 +29,16 @@ export function Popup(props) {
   );
 }
 
+export function LoadingPopup(props) {
+  return props.trigger ? (
+    <div className="popup">
+        <img className="loadingGif" src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/Loading.gif?alt=media&token=0d3075d1-5568-43d8-952d-0fb19567037c" alt=""></img>
+    </div>
+  ) : (
+    ""
+  );
+}
+
 export function DeleteIncomePopup(props) {
   const [errorPopup, setErrorPopup] = useState(false);
   const [validPopup, setValidPopup] = useState(false);
@@ -171,6 +181,7 @@ function getPocketIdByName(pockets, name) {
 }
 
 export function DeleteWalletPopup(props) {
+  const [isLoading, setIsLoading] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
   const [validPopup, setValidPopup] = useState(false);
   const [wallets, setWallets] = useState([]);
@@ -196,6 +207,7 @@ export function DeleteWalletPopup(props) {
   }
 
   const handleClick = () => {
+    setIsLoading(true);
     DeleteWalletRequest(
       getWalletIdByName(walletsArray, props.walletName),
       getWalletIdByName(walletsArray, selectedWallet)
@@ -203,8 +215,10 @@ export function DeleteWalletPopup(props) {
       .then((responseData) => {
         if (responseData.code) {
           setValidPopup(true);
+          setIsLoading(false);
         } else {
           setErrorPopup(true);
+          setIsLoading(false);
         }
       })
       .catch((error) => {
@@ -214,6 +228,7 @@ export function DeleteWalletPopup(props) {
   };
   return props.trigger ? (
     <div className="popup">
+      <LoadingPopup trigger={isLoading} setTrigger={setIsLoading} />
       <div className="popup-inner">
         <button className="close-btn" onClick={() => props.setTrigger(false)}>
           X
@@ -238,12 +253,12 @@ export function DeleteWalletPopup(props) {
         <ErrorNotificationPopup
           trigger={errorPopup}
           setTrigger={setErrorPopup}
-          error={"No se creo el pocket, valida la informacion"}
+          error={"No se elimino el wallet, valida la informacion"}
         />
         <ValidTransactionPopup
           trigger={validPopup}
           setTrigger={setValidPopup}
-          message={"Se creo el pocket correctamente"}
+          message={"Se elimino el wallet correctamente"}
         />
       </div>
     </div>
@@ -299,6 +314,8 @@ export function ValidTransactionPopup(props) {
 }
 
 export function CreateCategoryPopup(props) {
+  
+  const [isLoading, setIsLoading] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
   const [validPopup, setValidPopup] = useState(false);
   const [inputName, setInputName] = useState("");
@@ -306,8 +323,11 @@ export function CreateCategoryPopup(props) {
     setInputName(event.target.value);
   };
   const handleCreateClick = () => {
+    
+    setIsLoading(true);
     CreateCategoryRequest(inputName)
       .then((responseData) => {
+        setIsLoading(false);
         if (responseData.code) {
           setValidPopup(true);
         } else {
@@ -316,10 +336,12 @@ export function CreateCategoryPopup(props) {
       })
       .catch((error) => {
         console.error(error);
+        setIsLoading(false);
       });
   };
   return props.trigger ? (
     <div className="popup">
+      <LoadingPopup trigger={isLoading} setTrigger={setIsLoading} />
       <div className="popup-inner">
         <h1 className="popup-title">Crear Categoria</h1>
         <p className="popup-text">nombre</p>
@@ -353,6 +375,8 @@ function getCategoryIdByName(categories, name) {
 }
 
 export function DeleteCategoryPopup(props) {
+  
+  const [isLoading, setIsLoading] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
   const [validPopup, setValidPopup] = useState(false);
   const [categories, setPockets] = useState([]);
@@ -362,15 +386,17 @@ export function DeleteCategoryPopup(props) {
     setSelectedCategory(selectedValue);
   };
   useEffect(() => {
+    setIsLoading(true);
     GetCategoriesRequest()
       .then((responseData) => {
+        setIsLoading(false);
         setCategoriesArray(responseData.data);
         setPockets(responseData.data.map((obj) => obj.name));
-        console.log(responseData.data.map((obj) => obj.name)[0]);
         setSelectedCategory(responseData.data.map((obj) => obj.name)[0]);
       })
       .catch((error) => {
         console.error(error);
+        setIsLoading(false);
       });
   }, []);
   if (categories === null) {
@@ -395,6 +421,7 @@ export function DeleteCategoryPopup(props) {
   };
   return props.trigger ? (
     <div className="popup">
+      <LoadingPopup trigger={isLoading} setTrigger={setIsLoading} />
       <div className="popup-inner">
         <button className="close-btn" onClick={() => props.setTrigger(false)}>
           X

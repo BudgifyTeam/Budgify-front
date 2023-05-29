@@ -4,9 +4,11 @@ import { UserForm, CheckTerm, Header } from "../components/FormsComponents";
 import { GetToken } from "../utils/stringUtils";
 import { LoginRequest } from "../api/LoginApi";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { LoadingPopup } from "../components/Popups";
 
 function Login() {
-  //user is not logged in
+  
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -24,6 +26,7 @@ function Login() {
   }
 
   const handleSubmit = () => {
+    
     let validUsername = true;
     const setUsernamePattern = /^[a-zA-Z0-9_]{2,15}$/;
     validUsername = !setUsernamePattern.test(username) ? false : true;
@@ -59,6 +62,7 @@ function Login() {
 }
 
   async function handleLogin() {
+    setIsLoading(true);
     let token = GetToken(username, password);
     const data = await LoginRequest(username, token);
     console.log(data);
@@ -71,10 +75,11 @@ function Login() {
         localStorage.setItem("token", token);
         console.log("Add Token");
       }
-      console.log(data.code + " llevando al usuario a su sesión");
+      setIsLoading(false);
       navigate("/dashboard");
     } else {
       //imprimir mensaje el data.message en una alerta
+      setIsLoading(false);
       console.log(data.code + " imprimiendo el mensaje de error");
     }
   }
@@ -85,6 +90,7 @@ function Login() {
   return (
     <div>
       <Header />
+      <LoadingPopup trigger={isLoading} setTrigger={setIsLoading} />
       <h1 id="LoginTitle">To continue, log in to Budgify</h1>
       <UserForm
         header={"Username"}

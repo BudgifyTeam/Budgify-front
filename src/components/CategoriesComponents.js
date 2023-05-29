@@ -5,6 +5,7 @@ import { DeleteCategoryPopup, CreateCategoryPopup } from "../components/Popups";
 import {
   ErrorNotificationPopup,
   ValidTransactionPopup,
+  LoadingPopup,
 } from "../components/Popups";
 
 export default function CategoryComponent(props) {
@@ -57,6 +58,7 @@ function DeleteCategoryButton(props) {
 }
 
 function RenameCategory(props) {
+  const [isLoading, setIsLoading] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
   const [validPopup, setValidPopup] = useState(false);
   const [inputName, setInputName] = useState(props.value.name);
@@ -65,9 +67,11 @@ function RenameCategory(props) {
   };
 
   const handleClik = () => {
+    setIsLoading(true);
     EditPocketsRequest(props.value.category_id, inputName)
       .then((responseData) => {
         console.log(responseData);
+        setIsLoading(false);
         if (responseData.code) {
           setValidPopup(true);
         } else {
@@ -76,12 +80,14 @@ function RenameCategory(props) {
       })
       .catch((error) => {
         console.error(error);
+        setIsLoading(false);
       });
     console.log(props.value);
     console.log(inputName);
   };
   return (
     <div className="RenameContainer">
+      <LoadingPopup trigger={isLoading} setTrigger={setIsLoading} />
       <input id="NewNameInput" value={inputName} onChange={handleInputChange} />
       <button id="editCategoryButton" onClick={handleClik}>
         <img
