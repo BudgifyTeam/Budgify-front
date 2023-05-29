@@ -1,6 +1,28 @@
 import url_back from "./config";
 
-export async function MakeIncomeRequest(walletId, inputValue, selectedDate) {
+export 
+/**
+ * The MakeIncomeRequest function makes a POST request to the backend API
+ * and returns the response data.
+ * 
+ *
+ * @param walletId Identify the wallet that will be updated
+async function updatewallet(walletid, newbudget) {
+  const baseurl = url_back + &quot;wallet/updatebudget&quot;;
+  var queryparams = new urlsearchparams({
+    id: parseint(walletid), 
+ * @param inputValue Pass the value of the input to this function
+async function addincome(inputvalue) {
+  const walletid = localstorage
+ * @param selectedDate Pass the selected date to the function
+async function makeexpenserequest(walletid, inputvalue, selecteddate) {
+  if (inputvalue
+ *
+ * @return A promise that resolves to an object
+ *
+ * @docauthor Leonardo
+ */
+async function MakeIncomeRequest(walletId, inputValue, selectedDate) {
   if (inputValue.length !== 0) {
     const baseUrl = url_back + "Income/CreateIncome";
     var queryParams = new URLSearchParams({
@@ -43,7 +65,18 @@ export async function MakeIncomeRequest(walletId, inputValue, selectedDate) {
   }
 }
 
-export async function GetIncomesRequest() {
+export 
+/**
+ * The GetIncomesRequest function makes a GET request to the server,
+ * and returns an array of income objects.
+ * 
+ *
+ *
+ * @return A promise
+ *
+ * @docauthor Leonardo
+ */
+async function GetIncomesRequest() {
   const url =
     url_back +
     "Income/GetIncomes?userid=" +
@@ -70,7 +103,22 @@ export async function GetIncomesRequest() {
   }
 }
 
-export async function DeleteIncomeRequest(incomeid) {
+export 
+/**
+ * The DeleteIncomeRequest function makes a GET request to the server,
+ * passing in an incomeid parameter. The response is then parsed as JSON and returned.
+ * 
+ *
+ * @param incomeid Pass the id of the income to be deleted
+async function deleteincome(incomeid) {
+  try {
+    const data = await deleteincomerequest(incomeid); 
+ *
+ * @return This:
+ *
+ * @docauthor Leonardo
+ */
+async function DeleteIncomeRequest(incomeid) {
   const url = url_back + "Income/DeleteIncome?incomeid=" + incomeid;
   try {
     const response = await fetch(url, {

@@ -1,0 +1,9 @@
+npm ERR! code UNKNOWN
+npm ERR! syscall rename
+npm ERR! path C:\coding\Budgify-front\node_modules\.bin\webpack
+npm ERR! dest C:\coding\Budgify-front\node_modules\.bin\.webpack-VvpL6r8S
+npm ERR! errno -4094
+npm ERR! UNKNOWN: unknown error, rename 'C:\coding\Budgify-front\node_modules\.bin\webpack' -> 'C:\coding\Budgify-front\node_modules\.bin\.webpack-VvpL6r8S'
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\Leonardo\AppData\Local\npm-cache\_logs\2023-05-29T09_41_54_596Z-debug-0.log

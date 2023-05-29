@@ -9,7 +9,19 @@ import { GetWalletsRequest } from "../api/WalletAPI";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export function Header(props) {
+export 
+/**
+ * The Header function is a React component that renders the header of the app.
+ * It contains an image, a title and a budget value.
+ 
+ *
+ * @param props Pass data to the component
+ *
+ * @return A react element
+ *
+ * @docauthor Leonardo
+ */
+function Header(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [budgetValue] = useState(() => {
     const storedValue = localStorage.getItem("budgetValue");
@@ -40,7 +52,19 @@ export function Header(props) {
   );
 }
 
-export function BudgetValue(props) {
+export 
+/**
+ * The BudgetValue function is a React component that displays the user's budget value.
+ * It uses the useState hook to store and retrieve its state from localStorage.
+ 
+ *
+ * @param props Access the properties of the component
+ *
+ * @return A component
+ *
+ * @docauthor Leonardo
+ */
+function BudgetValue(props) {
   const [budgetValue] = useState(() => {
     const storedValue = localStorage.getItem("budgetValue");
     return storedValue ? parseInt(storedValue) : 0;
@@ -72,7 +96,18 @@ export function BudgetValue(props) {
   );
 }
 
-export function WeekReview() {
+export 
+/**
+ * The WeekReview function is a React component that renders the WeekReview page.
+ * It displays a chart with the total amount of money in each wallet.
+ 
+ *
+ *
+ * @return A div with a title and an empty chart
+ *
+ * @docauthor Leonardo
+ */
+function WeekReview() {
   const [labels, setLabels] = useState([]);
   const [values, setValues] = useState([]);
   useEffect(() => {
@@ -131,7 +166,17 @@ export function WeekReview() {
   );
 }
 
-export function OperationMenu() {
+export 
+/**
+ * The OperationMenu function returns a div containing two links to the income and expense pages.
+ * 
+ *
+ *
+ * @return A div element with two links
+ *
+ * @docauthor Leonardo
+ */
+function OperationMenu() {
   return (
     <div id="operationMenu">
       <Link to="/dashboard/income">
@@ -144,6 +189,18 @@ export function OperationMenu() {
   );
 }
 
+
+/**
+ * The OperationButton function is a component that renders a button with the text passed in as props.
+ * The color of the button depends on whether it's an income or expense operation.
+ 
+ *
+ * @param props Access the properties of the component
+ *
+ * @return A button element
+ *
+ * @docauthor Leonardo
+ */
 function OperationButton(props) {
   if (props.option === "Income" || props.option === "Add Expense") {
     return <button id="IncomeButton">{props.option}</button>;
@@ -152,7 +209,18 @@ function OperationButton(props) {
   }
 }
 
-export function Footer() {
+export 
+/**
+ * The Footer function is a React component that renders the footer of the application.
+ * It contains links to all other pages in the app, and also has a logout button.
+ 
+ *
+ *
+ * @return A footer element
+ *
+ * @docauthor Leonardo
+ */
+function Footer() {
   return (
     <footer>
       <Link to="/dashboard/history">
@@ -174,6 +242,17 @@ export function Footer() {
   );
 }
 
+
+/**
+ * The NavBarButton function is a component that renders the buttons of the navbar.
+ * 
+ *
+ * @param props Pass data from the parent component to the child component
+ *
+ * @return A table, so you should use it like this:
+ *
+ * @docauthor Leonardo
+ */
 function NavBarButton(props) {
   let path = "";
   let name = "";
