@@ -14,8 +14,6 @@ function Login() {
   const [passwordAlert, setPasswordAlert] = useState("hidden");
   const [rememberMe, setRememberMe] = useState(false);
 
-
-  
   const [requestAlert, setRequestAlert] = useState(false);
   const [requestAlerInfo, setRequestAlertInfo] = useState("");
   const handleUsernameChange = (event) => {

@@ -1,5 +1,16 @@
 import url_back from "./config";
-export async function GetWalletsRequest() {
+export 
+/**
+ * The GetWalletsRequest function makes a GET request to the server,
+ * and returns the response as JSON.
+ 
+ *
+ *
+ * @return An array of objects, and the data is displayed in a table
+ *
+ * @docauthor Leonardo
+ */
+async function GetWalletsRequest() {
     const url =
       url_back + "Wallet/GetWallets?userid=" + localStorage.getItem("userId");
     try {
@@ -23,7 +34,19 @@ export async function GetWalletsRequest() {
     }
   }
 
-  export async function CreateWalletRequest(name, SelectedIcon) {
+  export 
+  /**
+   * The CreateWalletRequest function sends a POST request to the server with the name and icon of a new wallet.
+   * 
+   *
+   * @param name Set the name of the wallet, and selectedicon is used to set the icon
+   * @param SelectedIcon Pass the icon that is selected by the user
+   *
+   * @return This object:
+   *
+   * @docauthor Leonardo
+   */
+  async function CreateWalletRequest(name, SelectedIcon) {
       if (name.length !== 0 && SelectedIcon.length !== 0) {
         const url = new URL( url_back + "Wallet/CreateWallet");
         const queryParams = new URLSearchParams();
@@ -58,7 +81,19 @@ export async function GetWalletsRequest() {
       }
   }
 
-  export async function DeleteWalletRequest(walletid, newWallet) {
+  export 
+  /**
+   * The DeleteWalletRequest function is used to delete a wallet from the database.
+   * 
+   *
+   * @param walletid Identify the wallet to be deleted
+   * @param newWallet Indicate the wallet to which you want to transfer the balance of the deleted wallet
+   *
+   * @return A json object, so you can use it like this:
+   *
+   * @docauthor Leonardo
+   */
+  async function DeleteWalletRequest(walletid, newWallet) {
     if (walletid.length !== 0 && newWallet.length !== 0) {
       const url = new URL(url_back + "Wallet/Deletewallet");
       const queryParams = new URLSearchParams();
@@ -92,7 +127,27 @@ export async function GetWalletsRequest() {
     }
   }
 
-  export async function EditWalletRequest(total, icon, name, Wallet) {
+  export 
+  /**
+   * The EditWalletRequest function sends a request to the server with the data of the wallet that is going to be modified.
+   * 
+   *
+   * @param total Send the total value of the wallet to be modified
+   * @param icon Send the icon of the wallet to be modified
+  async function editwallet(total, icon, name) {
+      const wallet = json
+   * @param name Set the name of the wallet
+  async function editwallet(name) {
+      try {
+        const data = await editwalletrequest(total, icon, name, wallet);
+        if (data
+   * @param Wallet Send the data to the server
+   *
+   * @return A promise, so you have to use await
+   *
+   * @docauthor Leonardo
+   */
+  async function EditWalletRequest(total, icon, name, Wallet) {
     if (total.length !== 0) {
       const url = new URL(url_back + "Wallet/Modifywallet");
       const queryParams = new URLSearchParams();
@@ -129,7 +184,4 @@ export async function GetWalletsRequest() {
         code: false,
       };
     }
-  }
-  export async function CreatePocketsRequest(name, icon, goal) {
-    
   }
