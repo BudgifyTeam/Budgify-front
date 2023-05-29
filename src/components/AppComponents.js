@@ -122,7 +122,7 @@ export function WeekReview() {
   };
   return (
     <div className="weekReviewContainer">
-      <h3 id="weekReviewTitle">Week Review</h3>
+      <h3 id="weekReviewTitle">Wallets Review</h3>
       <hr />
       <div className="GraphContainer">
         <Doughnut data={data} />
