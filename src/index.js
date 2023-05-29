@@ -18,6 +18,7 @@ import CreatePocket from "./pages/CreatePocket";
 import Categories from "./pages/Categories";
 import IncomesHistory from "./pages/IncomesHistory";
 import ExpenseHistory from "./pages/ExpenseHistory";
+import Account from "./pages/Account";
 
 const root = ReactDom.createRoot(document.getElementById("root"));
 
@@ -26,6 +27,7 @@ root.render(
     <Router>
       <Routes>
         <Route exact path="/" element={<App />} />
+        <Route exact path="/account" element={<Account />} />
         <Route exact path="/categories" element={<Categories />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/dashboard/income" element={<Income/>} />

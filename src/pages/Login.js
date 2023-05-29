@@ -7,7 +7,6 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { LoadingPopup } from "../components/Popups";
 
 function Login() {
-  
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -15,6 +14,10 @@ function Login() {
   const [passwordAlert, setPasswordAlert] = useState("hidden");
   const [rememberMe, setRememberMe] = useState(false);
 
+
+  
+  const [requestAlert, setRequestAlert] = useState(false);
+  const [requestAlerInfo, setRequestAlertInfo] = useState("");
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
@@ -26,13 +29,11 @@ function Login() {
   }
 
   const handleSubmit = () => {
-    
     let validUsername = true;
     const setUsernamePattern = /^[a-zA-Z0-9_]{2,15}$/;
     validUsername = !setUsernamePattern.test(username) ? false : true;
     let validPassword = true;
-    const passwordPattern =
-      /^[a-zA-Z0-9!@#$%^&._*]{8,16}$/;
+    const passwordPattern = /^[a-zA-Z0-9!@#$%^&._*]{8,16}$/;
     validPassword = !passwordPattern.test(password) ? false : true;
 
     if (validUsername && validPassword) {
@@ -43,23 +44,23 @@ function Login() {
     }
   };
 
-  function verifyLogin(){
-    var message_error = ""
-    if(password === "" && username === ""){
-        message_error = "Usename and password are empty"
-    }else if(username === ""){
-        message_error = "Username is empty "
-    }else if(password === ""){
-        message_error = "Password is empty"
-    }else if(username.length <= 6){
-        message_error = "Username must have at least 2 characters"
-    }else if(password.length <= 8){
-        message_error = "password must have at least 8 characters"
-    }else{
-        message_error = "username or password are not valid"
+  function verifyLogin() {
+    var message_error = "";
+    if (password === "" && username === "") {
+      message_error = "Usename and password are empty";
+    } else if (username === "") {
+      message_error = "Username is empty ";
+    } else if (password === "") {
+      message_error = "Password is empty";
+    } else if (username.length <= 6) {
+      message_error = "Username must have at least 2 characters";
+    } else if (password.length <= 8) {
+      message_error = "password must have at least 8 characters";
+    } else {
+      message_error = "username or password are not valid";
     }
-    return message_error
-}
+    return message_error;
+  }
 
   async function handleLogin() {
     setIsLoading(true);
@@ -69,7 +70,7 @@ function Login() {
     if (data.code) {
       var value = data.data.budget.value;
       const userId = data.data.userId;
-      localStorage.setItem('userId', userId);
+      localStorage.setItem("userId", userId);
       localStorage.setItem("budgetValue", value);
       if (rememberMe) {
         localStorage.setItem("token", token);
@@ -81,6 +82,8 @@ function Login() {
       //imprimir mensaje el data.message en una alerta
       setIsLoading(false);
       console.log(data.code + " imprimiendo el mensaje de error");
+      setRequestAlertInfo(data.message);
+      setRequestAlert(true);
     }
   }
   if (localStorage.getItem("token") != null) {
@@ -97,6 +100,11 @@ function Login() {
         onChange={handleUsernameChange}
         alertStatus={"hidden"}
       />
+      {requestAlert && (
+        <div className={`alert alert-danger p-1 role="alert"`}>
+          {requestAlerInfo}
+        </div>
+      )}
       <UserForm
         header={"Password"}
         type={"password"}
@@ -106,13 +114,13 @@ function Login() {
       />
 
       <p id="forgotYourPassword">Forgot your password?</p>
-      <br/>
+      <br />
       <CheckTerm
         terms="Remember me"
         checked={rememberMe}
         onChange={handleRemember}
       />
-      <br/>
+      <br />
       <button id="roundButton" onClick={handleSubmit}>
         LOG IN
       </button>

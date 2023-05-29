@@ -1,11 +1,14 @@
 #logoutButton {
   background-color: white;
-  border: 1px grey solid;
+  border: 0px grey solid;
   padding-left: 25px;
   padding-right: 25px;
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 200;
+  padding-bottom: 20px;
+  
+  padding-top: 0px;
   width: 100%;
 }
 
