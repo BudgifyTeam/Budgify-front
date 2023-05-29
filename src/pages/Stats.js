@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Footer, Header } from "../components/AppComponents";
 import {
   Chart as ChartJS,
@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { GetHistoryRequest } from "../api/HistoryAPI";
 
 ChartJS.register(
   CategoryScale,
@@ -21,6 +22,22 @@ ChartJS.register(
 );
 
 function Stats() {
+  const [history, setHistory] = useState([]);
+  useEffect(() => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    const currentDate = `${year}-${month}-${day}`;
+    GetHistoryRequest(currentDate, "Mes")
+      .then((responseData) => {
+        setHistory(responseData.history.items);
+        console.log(responseData.history.items);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
   const options = {
     responsive: true,
     plugins: {
