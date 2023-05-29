@@ -1,4 +1,4 @@
-import React, {useEffect, useState}from "react";
+import React, { useEffect, useState } from "react";
 import {
   Footer,
   Header,
@@ -7,12 +7,11 @@ import {
   OperationMenu,
 } from "../components/AppComponents";
 
-
 function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const delay = 1000;
+    const delay = 400;
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, delay);
@@ -20,7 +19,15 @@ function Dashboard() {
   }, []);
 
   if (isLoading) {
-    return <div>Cargando...</div>;
+    return (
+      <div className="popup">
+        <img
+          className="loadingGif"
+          src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/Loading.gif?alt=media&token=0d3075d1-5568-43d8-952d-0fb19567037c"
+          alt=""
+        ></img>
+      </div>
+    );
   }
   return (
     <div>
@@ -36,7 +43,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-
-
-
-

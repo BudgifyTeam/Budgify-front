@@ -14,10 +14,14 @@ import { GetWalletsRequest } from "../api/WalletAPI";
 import { GetPocketsRequest } from "../api/PocketAPI";
 import { MakeExpenseRequest } from "../api/ExpenseAPI";
 import "./Expense.css";
-import { ErrorNotificationPopup, ValidTransactionPopup } from "../components/Popups";
+import {
+  ErrorNotificationPopup,
+  ValidTransactionPopup,
+  LoadingPopup,
+} from "../components/Popups";
 
 export default function Expense() {
-  
+  const [isLoading, setIsLoading] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
   const [validPopup, setValidPopup] = useState(false);
   const [pockets, setPockets] = useState(null);
@@ -107,7 +111,15 @@ export default function Expense() {
       });
   }, []);
   if (wallets === null || categories === null || pockets === null) {
-    return <div>Cargando Wallets, Pockets y categorias</div>;
+    return (
+      <div className="popup">
+        <img
+          className="loadingGif"
+          src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/Loading.gif?alt=media&token=0d3075d1-5568-43d8-952d-0fb19567037c"
+          alt=""
+        ></img>
+      </div>
+    );
   } else {
     if (walletId === null) {
       setWalletId(wallets.data[0].wallet_id);
@@ -123,15 +135,9 @@ export default function Expense() {
   //=================================================================================
 
   //=================================================================================
-  
 
   const handleButtonClick = () => {
-    console.log("Botón clickeado");
-    console.log(walletId);
-    console.log(inputValue);
-    console.log(selectedDate);
-    console.log(pocketId);
-    console.log(categoryId);
+    setIsLoading(true);
     if (inputValue !== null) {
       MakeExpenseRequest(
         walletId,
@@ -142,10 +148,11 @@ export default function Expense() {
       )
         .then((responseData) => {
           if (responseData.code) {
-            console.log("shi");
             setValidPopup(true);
+            setIsLoading(false);
           } else {
             setErrorPopup(true);
+            setIsLoading(false);
           }
         })
         .catch((error) => {
@@ -156,7 +163,8 @@ export default function Expense() {
 
   return (
     <div className="dashboardContainer">
-      <Header title="Expense " />
+      <Header title="Expense" />
+      <LoadingPopup trigger={isLoading} setTrigger={setIsLoading} />
       <div className="ExpenseContainer">
         <IAEValueInput onInputChange={handleInputChange} />
         <hr />
@@ -164,14 +172,14 @@ export default function Expense() {
           categories={categoriesNames}
           onWalletChange={handleCategoryChange}
         />
-          <WalletSelector
-            wallets={walletNames}
-            onWalletChange={handleWalletChange}
-          />
-          <PocketSelector
-            pockets={pocketNames}
-            onWalletChange={handlePocketChange}
-          />
+        <WalletSelector
+          wallets={walletNames}
+          onWalletChange={handleWalletChange}
+        />
+        <PocketSelector
+          pockets={pocketNames}
+          onWalletChange={handlePocketChange}
+        />
         <DateSelector onDateChange={handleDateChange} />
         <OperationExpenseMenu onClick={handleButtonClick} />
         <ErrorNotificationPopup

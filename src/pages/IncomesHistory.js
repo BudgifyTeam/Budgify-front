@@ -4,6 +4,7 @@ import { FormatIntegerWithDecimals } from "../utils/stringUtils";
 import { Header, Footer } from "../components/AppComponents";
 import { DeleteIncomePopup } from "../components/Popups";
 import { Link } from "react-router-dom";
+import "./IncomesHistory.css";
 function IncomesHistory() {
   const [incomes, setIncomes] = useState([]);
   useEffect(() => {
@@ -16,13 +17,21 @@ function IncomesHistory() {
       });
   }, []);
 
-  if (incomes[0] === null) {
-    return <div>Cargando incomes</div>;
+  if (incomes.length === 0) {
+    return (
+      <div className="popup">
+        <img
+          className="loadingGif"
+          src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/Loading.gif?alt=media&token=0d3075d1-5568-43d8-952d-0fb19567037c"
+          alt=""
+        ></img>
+      </div>
+    );
   }
   return (
     <div className="dashboardContainer">
       <Header />
-      <div>
+      <div className="IncomesContainer">
         {incomes.map((income) => (
           <IncomeButton value={income} />
         ))}
@@ -49,7 +58,7 @@ function IncomeButton(props) {
         </span>
         <h2>+${FormatIntegerWithDecimals(props.value.value)}</h2>
       </button>
-      {showOptions && <IncomeMovmentPanel incomeId={props.value.income_id}/>}
+      {showOptions && <IncomeMovmentPanel incomeId={props.value.income_id} />}
     </>
   );
 }
@@ -58,7 +67,7 @@ function IncomeMovmentPanel(props) {
   const [deleteConfirmPopup, setDeleteConfirmPopup] = useState(false);
   return (
     <div className="editButtonsContainer">
-      <button id="optionButtonleft" onClick={()=>setDeleteConfirmPopup(true)}>
+      <button id="optionButtonleft" onClick={() => setDeleteConfirmPopup(true)}>
         <img
           src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/delete.png?alt=media&token=1f6bb387-67c5-47f2-a15d-7da3c63d3971"
           alt="Delete Icon"
@@ -68,7 +77,7 @@ function IncomeMovmentPanel(props) {
       <DeleteIncomePopup
         trigger={deleteConfirmPopup}
         setTrigger={setDeleteConfirmPopup}
-        incomeId= {props.incomeId}
+        incomeId={props.incomeId}
       />
       <Link
         to={"/dashboard/wallets/edit"}

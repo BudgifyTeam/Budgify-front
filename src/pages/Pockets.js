@@ -23,18 +23,24 @@ function Pockets() {
 
   return (
     <div className="dashboardContainer">
-      <Header title="Pockets"/>
-      <div>
+      <Header title="Pockets" />
+      <div className="PocketsListContainer">
         {isLoading ? (
-          <h1>Cargando</h1>
+          <div className="popup">
+            <img
+              className="loadingGif"
+              src="https://firebasestorage.googleapis.com/v0/b/budgify-ed7a9.appspot.com/o/Loading.gif?alt=media&token=0d3075d1-5568-43d8-952d-0fb19567037c"
+              alt=""
+            ></img>
+          </div>
         ) : (
-          pockets.map((pocket, index) => (
+          pockets.map((pocket, index) =>
             pocket.name === "default" ? null : (
               <PocketButton value={pocket} index={index} key={index} />
             )
-          ))
+          )
         )}
-        <AddPocketButton/>
+        <AddPocketButton />
       </div>
       <Footer />
     </div>

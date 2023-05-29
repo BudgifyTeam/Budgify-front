@@ -4,9 +4,10 @@ import { useLocation } from "react-router-dom";
 import WalletImages from "../utils/Wallets";
 import "./EditWallet.css";
 import { EditWalletRequest } from "../api/WalletAPI";
-import { ErrorNotificationPopup, ValidTransactionPopup } from "../components/Popups";
+import { ErrorNotificationPopup, ValidTransactionPopup, LoadingPopup } from "../components/Popups";
 
 function EditWallet() {
+  const [isLoading, setIsLoading] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
   const [validPopup, setValidPopup] = useState(false);
   const location = useLocation();
@@ -25,18 +26,17 @@ function EditWallet() {
   };
 
   const handleClick = () => {
-    console.log(SelectedIcon);
-    console.log(title);
-    console.log(value);
-    console.log(wallet);
+    
+    setIsLoading(true);
     EditWalletRequest(value, SelectedIcon, title, wallet)
       .then((responseData) => {
         console.log(responseData.code);
         if (responseData.code) {
-          console.log("shi");
           setValidPopup(true);
+          setIsLoading(false);
         } else {
           setErrorPopup(true);
+          setIsLoading(false);
         }
       })
       .catch((error) => {
@@ -47,6 +47,7 @@ function EditWallet() {
   return (
     <div>
       <Header title="EditWallet" />
+      <LoadingPopup trigger={isLoading} setTrigger={setIsLoading} />
       <div className="EditWalletContainer">
         <h1 id="edit-Title">Icono</h1>
         <ButtonTable onButtonSelect={handleButtonSelect}/>

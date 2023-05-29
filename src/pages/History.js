@@ -6,11 +6,14 @@ import {
   IncomeMovmentButton,
   ExpenseMovmentButton,
 } from "../components/HistoryComponents";
+import {LoadingPopup} from "../components/Popups"
+
 
 function History() {
   const [timeTypeSelected, setTimeTypeSelected] = useState("Dia");
   const [selectedDate, setSelectedDate] = useState(getFormattedDate());
   const [movments, setMovments] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const options = [
     { value: "Dia", label: "Día" },
@@ -27,13 +30,15 @@ function History() {
     setSelectedDate(event.target.value);
   };
   const handleFind = () => {
+    setIsLoading(true);
     GetHistoryRequest(selectedDate, timeTypeSelected)
       .then((responseData) => {
-        console.log(responseData);
+        setIsLoading(false);
         setMovments(responseData.history.items);
         console.log(responseData.history.items);
       })
       .catch((error) => {
+        setIsLoading(false);
         console.error(error);
       });
   };
@@ -55,6 +60,7 @@ function History() {
   return (
     <div className="dashboardContainer">
       <Header />
+      <LoadingPopup trigger={isLoading} setTrigger={setIsLoading} />
       <div id="HistoryContainer">
         <div id="findParmsContainer">
           <select
