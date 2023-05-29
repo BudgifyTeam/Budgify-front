@@ -42,7 +42,7 @@ export default function Income() {
     GetWalletsRequest()
       .then((responseData) => {
         setWallets(responseData);
-        setWalletNames(responseData.data.map((obj) => obj.name));
+        setWalletNames(responseData.data.map((obj) => obj.name +'-'+obj.total));
       })
       .catch((error) => {
         console.error(error);
