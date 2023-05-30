@@ -1,14 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./LogoutButton.css";
 
 function LogoutButton() {
+  const navigate = useNavigate();
   async function logoutSubmit() {
     await localStorage.removeItem("budgetValue");
     await localStorage.removeItem("userId");
     if (localStorage.getItem("token") != null) {
       await localStorage.removeItem("token");
     }
+    setTimeout(function () {
+      navigate("/login");
+    }, 100);
     console.log("Log Out");
   }
 
@@ -16,7 +20,7 @@ function LogoutButton() {
     <div className="popup">
       <div className="popup-inner">
         <div className="buttonsContainer">
-        <Link to="/Account">
+          <Link to="/Account">
             <button onClick={logoutSubmit} id="logoutButton">
               Cuenta
             </button>
@@ -26,12 +30,9 @@ function LogoutButton() {
             <button id="logoutButton">Categorias</button>
           </Link>
           <hr />
-          <Link to="/Login">
-            <button onClick={logoutSubmit} id="logoutButton">
-              Log Out
-            </button>
-          </Link>
-          
+          <button onClick={logoutSubmit} id="logoutButton">
+            Log Out
+          </button>
         </div>
       </div>
     </div>

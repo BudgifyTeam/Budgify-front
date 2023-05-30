@@ -85,7 +85,6 @@ function Login() {
     }
   }
   if (localStorage.getItem("token") != null) {
-    //user is already logged in
     return <Navigate to="/dashboard" replace />;
   }
   return (

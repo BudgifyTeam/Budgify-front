@@ -61,14 +61,14 @@ function Stats() {
         const types = responseData.history.items.map(
           (item) => item.type + ":" + FormatIntegerWithDecimals(item.value)
         );
-        setlabels(types);
+        setlabels(types.reverse());
         const values = responseData.history.items.map((item) => {
           if (item.name === "expense") {
             return -item.value; // Valor negativo si el name es "expense"
           }
           return item.value;
         });
-        setValues(values);
+        setValues(values.reverse());
         const backgroundColor = values.map((value) => {
           if (value >= 0) {
             return "rgba(155, 193, 141, 1)"; // Valor positivo

@@ -105,6 +105,7 @@ export default function Expense() {
       .then((responseData) => {
         setWallets(responseData);
         setWalletNames(responseData.data.map((obj) => obj.name+'-'+obj.total));
+        setSelectedWallet(responseData.data.map((obj) => obj.name+'-'+obj.total)[0])
       })
       .catch((error) => {
         console.error(error);
@@ -138,7 +139,8 @@ export default function Expense() {
 
   const handleButtonClick = () => {
     console.log(selectedWallet.split('-')[1]);
-    if (inputValue !== null && selectedWallet.split('-')[1] >= inputValue) {
+    console.log(inputValue);
+    if (inputValue !== null && parseInt(selectedWallet.split('-')[1]) >= parseInt(inputValue)) {
       MakeExpenseRequest(
         walletId,
         inputValue,
