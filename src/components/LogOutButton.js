@@ -21,7 +21,7 @@ function LogoutButton() {
       <div className="popup-inner">
         <div className="buttonsContainer">
           <Link to="/Account">
-            <button onClick={logoutSubmit} id="logoutButton">
+            <button id="logoutButton">
               Cuenta
             </button>
           </Link>
